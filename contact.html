@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Leo Robbins | Contact Me</title>
+    <link rel="stylesheet" href="../../style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/png" href="../../ProjectImages/SimpleLogo.png">
+</head>
+<body>
+
+<div id="custom-cursor"></div>
+
+<!-- TOP HEADER NAV -->
+<header class="top-header">
+    <div class="header-left">
+        <a href="../../index.html">
+            <img src="../../ProjectImages/SimpleLogo.png" alt="Logo" class="logo">
+        </a>
+    </div>
+    <nav class="header-right">
+        <a href="index.html">Home</a>
+        <a href="about.html">About</a>
+        <a href="#contact-section">Contact Me</a>
+    </nav>
+</header>
+
+<!-- MAIN CONTENT -->
+<main id="home">
+    <div class="grid-container">
+        <header>
+            <h1>Contact Me</h1>
+        </header>
+
+        <!-- CONTACT INFO + FORM -->
+        <section id="contact-section" class="background-section">
+            <div class="background-container">
+                <!-- Left: Image -->
+                <div class="background-left">
+                    <img src="ExtraPhotos/phoneicon.png" alt="Contact" class="about-photo">
+                </div>
+
+                <!-- Right: Contact Form & Info -->
+                <div class="background-right">
+                    <h2>Get in Touch</h2>
+                    <p>
+                        I’d love to hear from you! Whether you have a project idea, a question, or just want to say hi,
+                        feel free to reach out using the form below or via email.
+                    </p>
+
+                    <form class="contact-form" action="https://formspree.io/f/xjgknoje" method="POST">
+                        <input type="text" name="name" placeholder="Your Name" required>
+                        <input type="email" name="email" placeholder="Your Email" required>
+                        <textarea name="message" placeholder="Your Message" rows="6" required></textarea>
+                        <button type="submit">Send</button>
+                    </form>
+
+                    <p id="form-success" style="display:none; color:#1e90ff; margin-top:10px;">
+                        Thanks! Your message has been sent.
+                    </p>
+
+                    <div class="contact-details" style="margin-top:20px;">
+                        <p>Email: <a href="mailto:leo.p.robbins@gmail.com">leo.p.robbins@gmail.com</a></p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <footer>
+            <p>© 2026 Leo Robbins. All rights reserved.</p>
+        </footer>
+    </div>
+</main>
+
+<script src="../../script.js"></script>
+</body>
+</html>
