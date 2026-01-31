@@ -230,17 +230,16 @@ document.addEventListener("DOMContentLoaded", () => {
     document.querySelectorAll('.scroll-carousel').forEach(carousel => {
         const images = carousel.querySelectorAll('img');
 
-        // Only apply to carousels with 4+ images
         if (images.length < 4 || carousel.scrollWidth <= carousel.clientWidth) return;
+
+        const speed = 1.5; // scroll speed multiplier
+        const easing = 0.25; // higher = snappier
 
         let targetScroll = carousel.scrollLeft;
         let currentScroll = carousel.scrollLeft;
-        const speed = 1.5; // scroll speed multiplier
-        const easing = 0.12; // smoothness
 
-        // Always listen to wheel events immediately
         carousel.addEventListener('wheel', (e) => {
-            e.preventDefault(); // stop vertical scroll over carousel
+            e.preventDefault();
             targetScroll += e.deltaY * speed;
             targetScroll = Math.max(
                 0,
@@ -248,14 +247,14 @@ document.addEventListener("DOMContentLoaded", () => {
             );
         }, { passive: false });
 
-        // Animate horizontal scrolling smoothly
         function animate() {
+            // faster catch-up
             currentScroll += (targetScroll - currentScroll) * easing;
             carousel.scrollLeft = currentScroll;
             requestAnimationFrame(animate);
         }
 
-        animate(); // start animation loop immediately
+        animate();
     });
 });
 
