@@ -254,31 +254,53 @@ setInterval(() => {
 }, 5000);
 
 // ==========================
-// Horizontal scroll with hover delay + speed control
+// Smart horizontal scroll with inertia
 // ==========================
 document.querySelectorAll('.scroll-carousel').forEach(carousel => {
+    const images = carousel.querySelectorAll('img');
+
+    // Only activate if it makes sense
+    if (images.length <= 3) return;
+    if (carousel.scrollWidth <= carousel.clientWidth) return;
+
+    let targetScroll = carousel.scrollLeft;
+    let currentScroll = carousel.scrollLeft;
+    let isHovering = false;
     let hoverTimer = null;
-    let isActive = false;
-    const speed = 3;      // scroll speed multiplier
-    const delay = 300;    // ms before activation
+
+    const speed = 1.2;   // how fast wheel adds to target
+    const easing = 0.12; // lower = smoother (0.08–0.15 is good)
+    const delay = 250;   // ms hover before activation
 
     carousel.addEventListener('mouseenter', () => {
         hoverTimer = setTimeout(() => {
-            isActive = true;
+            isHovering = true;
         }, delay);
     });
 
     carousel.addEventListener('mouseleave', () => {
         clearTimeout(hoverTimer);
-        isActive = false;
+        isHovering = false;
     });
 
     carousel.addEventListener('wheel', (e) => {
-        if (!isActive) return;
+        if (!isHovering) return;
 
-        if (e.deltaY !== 0) {
-            e.preventDefault();
-            carousel.scrollLeft += e.deltaY * speed;
-        }
+        e.preventDefault();
+        targetScroll += e.deltaY * speed;
+
+        // Clamp
+        targetScroll = Math.max(
+            0,
+            Math.min(targetScroll, carousel.scrollWidth - carousel.clientWidth)
+        );
     }, { passive: false });
+
+    function animate() {
+        currentScroll += (targetScroll - currentScroll) * easing;
+        carousel.scrollLeft = currentScroll;
+        requestAnimationFrame(animate);
+    }
+
+    animate();
 });
