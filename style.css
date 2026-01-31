@@ -452,40 +452,31 @@ a, button {
     border-radius: 8px;
 }
 
-.carousel-prev, .carousel-next {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    background: rgba(30, 144, 255, 0.1);
-    border: none;
-    color: white;
-    font-size: 2rem;
-    padding: 0 12px;
-    cursor: pointer;
-    border-radius: 6px;
-}
-
-.carousel-prev { left: 10px; }
-.carousel-next { right: 10px; }
-
-.carousel-button {
+/* Carousel Buttons */
+.carousel-prev,
+.carousel-next {
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
     background-color: rgba(30, 144, 255, 0.3);
     border: none;
     color: #fff;
-    padding: 10px;
+    font-size: 2rem;
+    padding: 8px 14px;
     cursor: pointer;
     border-radius: 6px;
-    font-size: 1.2rem;
     z-index: 10;
-    transition: background-color 0.3s ease;
+    transition: background-color 0.2s ease, transform 0.2s ease;
 }
 
-.carousel-button:hover {
+.carousel-prev:hover,
+.carousel-next:hover {
     background-color: rgba(30, 144, 255, 0.6);
+    transform: translateY(-50%) scale(1.1);
 }
+
+.carousel-prev { left: 10px; }
+.carousel-next { right: 10px; }
 
 .scroll-carousel {
     display: flex;
@@ -493,6 +484,11 @@ a, button {
     overflow-x: auto;
     scroll-behavior: smooth;
     padding-bottom: 10px;
+}
+
+.horizontal-gallery:not(.scrollable) .carousel-prev,
+.horizontal-gallery:not(.scrollable) .carousel-next {
+    display: none;
 }
 
 .scroll-carousel img {
