@@ -31,16 +31,16 @@ main {
     padding: 60px;
     background-color: #000;
 
-    /* Double vertical lines */
+    /* Subtle double vertical lines */
     background-image:
         linear-gradient(
             90deg,
-            rgba(160,160,160,0.05) 0px,
-            rgba(160,160,160,0.05) 2px,
+            rgba(200,200,200,0.03) 0px,
+            rgba(200,200,200,0.03) 2px,
             transparent 2px,
             transparent 16px,
-            rgba(160,160,160,0.05) 16px,
-            rgba(160,160,160,0.05) 18px,
+            rgba(200,200,200,0.03) 16px,
+            rgba(200,200,200,0.03) 18px,
             transparent 18px
         );
     background-size: 200px 100%;
