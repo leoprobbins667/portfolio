@@ -1,4 +1,6 @@
-/* ========================== Base Styles ========================== */
+/* ==========================
+   Base Styles
+========================== */
 html, body {
     margin: 0;
     padding: 0;
@@ -23,27 +25,31 @@ body.home-page #introVideo {
     pointer-events: none;
 }
 
+
 main {
     min-height: 100vh;
     padding: 60px;
     background-color: #000;
 
     /* Double vertical lines */
-    background-image: linear-gradient(
-        90deg,
-        rgba(255,255,255,0.1) 0px,
-        rgba(255,255,255,0.1) 2px,
-        transparent 2px,
-        transparent 16px,
-        rgba(255,255,255,0.1) 16px,
-        rgba(255,255,255,0.1) 18px,
-        transparent 18px
-    );
+    background-image:
+        linear-gradient(
+            90deg,
+            rgba(180,180,180,0.1) 0px,
+            rgba(180,180,180,0.1) 2px,
+            transparent 2px,
+            transparent 16px,
+            rgba(180,180,180,0.1) 16px,
+            rgba(180,180,180,0.1) 18px,
+            transparent 18px
+        );
     background-size: 200px 100%;
     background-position: center 0;
 }
 
-/* ========================== Grid Container ========================== */
+/* ==========================
+   Grid Container
+========================== */
 .grid-container {
     max-width: 960px;
     margin: 0 auto;
@@ -55,7 +61,9 @@ header, section {
     padding-left: 0;
 }
 
-/* ========================== Headers ========================== */
+/* ==========================
+   Headers
+========================== */
 header h1 {
     font-family: 'Fira Mono', monospace;
     font-weight: 400;
@@ -99,7 +107,9 @@ header h4 {
     display: inline-block;
 }
 
-/* ========================== Sections ========================== */
+/* ==========================
+   Sections
+========================== */
 section {
     margin-top: 80px;
 }
@@ -119,7 +129,9 @@ ul li:hover {
     transition: color 0.3s ease;
 }
 
-/* ========================== Projects Grid ========================== */
+/* ==========================
+   Projects Grid
+========================== */
 .projects-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -145,7 +157,6 @@ ul li:hover {
     overflow: hidden;
     border-radius: 8px;
 }
-
 .project-image-container img {
     width: 100%;
     height: auto;
@@ -191,7 +202,9 @@ ul li:hover {
     opacity: 1;
 }
 
-/* ========================== Contact Section ========================== */
+/* ==========================
+   Contact Section
+========================== */
 #contact {
     margin-top: 80px;
     font-family: 'Fira Mono', monospace;
@@ -247,7 +260,9 @@ ul li:hover {
     background-color: #0d6fb8;
 }
 
-/* ========================== Footer ========================== */
+/* ==========================
+   Footer
+========================== */
 footer {
     margin-top: 60px;
     padding: 20px 0;
@@ -258,7 +273,9 @@ footer {
     border-top: 1px solid #333;
 }
 
-/* ========================== Custom Cursor ========================== */
+/* ==========================
+   Custom Cursor
+========================== */
 body {
     cursor: none;
 }
@@ -298,6 +315,7 @@ body {
     transition: width 0.2s, height 0.2s, background-color 0.2s, box-shadow 0.2s;
 }
 
+
 a, button {
     cursor: none !important;
 }
@@ -313,7 +331,10 @@ a, button {
     transition: opacity 0.3s ease;
 }
 
-/* ========================== Section Divider ========================== */
+
+/* ==========================
+   Section Divider
+========================== */
 .section-divider {
     margin: 20px 0;
     height: 20px;
@@ -327,7 +348,6 @@ a, button {
     top: 0;
     bottom: 0;
     width: 2px;
-    background-color: rgba(255, 255, 255, 0.45);
 }
 
 .section-divider::before {
@@ -368,7 +388,8 @@ a, button {
     transform: translateY(0);
 }
 
-/* Project page images */
+
+
 .project-detail .project-images {
     display: flex;
     flex-wrap: wrap;
@@ -378,14 +399,320 @@ a, button {
 
 .project-detail .project-images img {
     width: 100%;
-    max-width: 600px;
+    max-width: 600px; /* limits the size */
     height: auto;
     border-radius: 8px;
     transition: transform 0.3s ease;
     object-fit: cover;
 }
 
-/* ========================== Project Page Header ========================== */
+.projects-flex {
+    display: flex;
+    gap: 60px; /* space between text and video */
+    align-items: flex-start;
+    justify-content: space-between; /* ensures video goes to the right */
+}
+
+.projects-video {
+    flex: 0 0 600px; /* fixed width for video */
+}
+
+
+.projects-text {
+    flex: 1;
+}
+
+.projects-text h2 {
+    font-size: 2rem;
+    margin-bottom: 20px;
+}
+
+.projects-text p {
+    font-size: 1.1rem;
+    line-height: 1.6;
+}
+
+.projects-carousel {
+    flex: 1;
+    position: relative;
+    overflow: hidden;
+    border-radius: 8px;
+    max-width: 300px;
+    height: auto;
+}
+
+.carousel-container {
+    display: flex;
+    transition: transform 0.5s ease-in-out;
+}
+
+.carousel-container img {
+    width: 100%;
+    height: auto;
+    object-fit: contain;
+    flex-shrink: 0;
+    border-radius: 8px;
+}
+
+.carousel-prev, .carousel-next {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(30, 144, 255, 0.1);
+    border: none;
+    color: white;
+    font-size: 2rem;
+    padding: 0 12px;
+    cursor: pointer;
+    border-radius: 6px;
+}
+
+.carousel-prev { left: 10px; }
+.carousel-next { right: 10px; }
+
+.carousel-button {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: rgba(30, 144, 255, 0.3);
+    border: none;
+    color: #fff;
+    padding: 10px;
+    cursor: pointer;
+    border-radius: 6px;
+    font-size: 1.2rem;
+    z-index: 10;
+    transition: background-color 0.3s ease;
+}
+
+.carousel-button:hover {
+    background-color: rgba(30, 144, 255, 0.6);
+}
+
+.scroll-carousel {
+    display: flex;
+    gap: 10px;
+    overflow-x: auto;
+    scroll-behavior: smooth;
+    padding-bottom: 10px;
+}
+
+.scroll-carousel img {
+    flex-shrink: 0;
+    width: 250px; /* fixed card size */
+    height: auto;
+    border-radius: 8px;
+    object-fit: cover;
+}
+
+.scroll-carousel::-webkit-scrollbar {
+    height: 6px;
+}
+.scroll-carousel::-webkit-scrollbar-thumb {
+    background: rgba(30,144,255,0.5);
+    border-radius: 3px;
+}
+
+.horizontal-gallery {
+    position: relative;
+    overflow: hidden;
+    margin-bottom: 50px;
+}
+
+/* ==========================
+   Project Page Header
+========================== */
+.project-header {
+    width: 100%;
+    padding: 24px 0;
+    display: flex;
+    justify-content: center;
+}
+
+.project-header img {
+    height: 48px;
+    width: auto;
+    opacity: 0.85;
+    transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.project-header img:hover {
+    opacity: 1;
+    transform: translateY(-2px);
+}
+
+.project-header {
+    justify-content: flex-start;
+    padding-left: 60px;
+}
+
+.projects-video {
+    width: 100%;
+    max-width: 600px;
+    height: auto;
+}
+
+.projects-video video {
+    width: 100%;
+    height: auto;
+    object-fit: contain;
+    border-radius: 8px;
+    display: block;
+    background-color: #000;
+}
+
+.projects-video video {
+    width: 100%;
+    height: auto; 
+    object-fit: contain;
+    border-radius: 8px;
+    display: block;
+    background-color: #000;
+}
+
+.resonance-video {
+    width: 100%;
+    max-width: 500px;
+    height: auto;
+    border-radius: 8px;
+    flex: 0 0 600px;
+    margin-left: 100px;
+}
+
+.resonance-video-container {
+    margin-left: 40px;
+    margin-right: 0;
+}
+
+.photo-row {
+    display: flex;
+    gap: 10px;
+    justify-content: space-between;
+    margin-top: 40px;
+}
+
+.photo-row img {
+    width: 32%;
+    height: auto;
+    border-radius: 8px;
+    object-fit: cover;
+}
+
+.full-image-section {
+    display: flex;
+    justify-content: flex-end;
+    margin: 40px 0;
+}
+
+.full-image-section img {
+    width: 100%;
+    max-width: 600px;
+    height: auto;
+    border-radius: 8px;
+    object-fit: cover;
+}
+
+.poster-image {
+    width: 100%;
+    max-width: 500px;
+    height: auto;
+    border-radius: 8px;
+    object-fit: contain;
+    box-shadow: 0 4px 18px rgba(0,0,0,0.4);
+    margin-left: 120px;
+}
+
+.projects-video-hokie {
+    flex: 1;
+    max-width: 300px;
+    margin-left: auto;
+}
+
+.projects-video-hokie video {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 702 / 1440;
+    border-radius: 8px;
+    display: block;
+}
+
+.top-header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 70px;
+    background-color: #0f0f0f;
+    display: flex;
+    align-items: center;
+    padding: 0 30px;
+    z-index: 9999;
+    border-bottom: 1px solid #222;
+}
+
+.top-header .logo {
+    height: 50px;
+    width: auto;
+}
+
+.top-header .header-right {
+    display: flex;
+    align-items: center;
+    margin-left: 1050px;
+}
+
+/* spacing between individual links */
+.top-header .header-right a {
+    color: #fff;
+    text-decoration: none;
+    margin-left: 30px;
+    font-family: 'Fira Mono', monospace;
+    font-weight: 400;
+    transition: color 0.3s;
+}
+
+.top-header .header-right a:hover {
+    color: #1e90ff;
+}
+
+body main {
+    padding-top: 90px;
+}
+
+body.home-page .top-header {
+    z-index: 1; /* lower than the video */
+}
+
+/* About Me Page */
+.about-flex {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 40px;
+    margin-top: 40px;
+}
+
+.about-text {
+    flex: 1;
+    min-width: 300px;
+    font-family: 'Fira Mono', monospace;
+    line-height: 1.6;
+}
+
+.about-image {
+    flex: 1;
+    min-width: 250px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.about-image img {
+    max-width: 100%;
+    border-radius: 12px;
+    box-shadow: 0 0 20px rgba(0,0,0,0.2);
+}
+
+/* Background Section */
 .background-section {
     background-color: #0f0f0f;
     color: #fff;
