@@ -488,11 +488,13 @@ a, button {
 
 .scroll-carousel img {
     flex-shrink: 0;
-    width: 250px; /* fixed card size */
+    width: auto;          /* let width grow naturally */
+    max-width: 100%;      /* prevent it from overflowing container */
     height: auto;
     border-radius: 8px;
     object-fit: cover;
 }
+
 
 .scroll-carousel::-webkit-scrollbar {
     height: 6px;
