@@ -402,9 +402,10 @@ a, button {
 
 .projects-flex {
     display: flex;
-    gap: 60px; /* space between text and video */
+    gap: 60px;
     align-items: flex-start;
-    justify-content: space-between; /* ensures video goes to the right */
+    justify-content: flex-start; /* don't force space-between */
+    flex-wrap: wrap;             /* allow wrapping on small screens */
 }
 
 .projects-video {
@@ -426,27 +427,27 @@ a, button {
 }
 
 .projects-carousel {
-    flex: 1;
+    flex: 1 1 600px;             /* grow, shrink, base width */
     position: relative;
-    overflow: hidden;  /* keeps buttons visible but allows images to fill */
+    overflow: hidden;
     border-radius: 8px;
-    width: 100%;        /* fill parent container */
-    max-width: 100%;    /* don’t shrink below parent width */
+    width: 100%;                  /* fill available space */
 }
 
 .carousel-container {
     display: flex;
     transition: transform 0.5s ease-in-out;
-    width: 100%;       /* fill the container */
+    width: 100%;
 }
 
 .carousel-container img {
-    flex: 0 0 100%;     /* each image takes full container width */
-    width: 100%;        /* scale image to container */
+    flex: 0 0 auto;               /* each image keeps its width */
+    width: 100%;                  /* scale to container */
     height: auto;
-    object-fit: cover;  /* maintain aspect ratio */
+    object-fit: cover;
     border-radius: 8px;
 }
+
 
 
 /* Carousel Buttons */
