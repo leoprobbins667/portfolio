@@ -404,8 +404,8 @@ a, button {
     display: flex;
     gap: 60px;
     align-items: flex-start;
-    justify-content: flex-start; /* don't force space-between */
-    flex-wrap: wrap;             /* allow wrapping on small screens */
+    justify-content: flex-start;
+    flex-wrap: wrap; /* allow wrapping on small screens */
 }
 
 .projects-video {
@@ -427,28 +427,27 @@ a, button {
 }
 
 .projects-carousel {
-    flex: 1 1 600px;             /* grow, shrink, base width */
+    flex: 1 1 auto;       /* grow and shrink freely */
+    min-width: 400px;     /* prevents it from collapsing too small */
+    max-width: 100%;      /* ensures it doesn’t exceed parent */
     position: relative;
-    overflow: hidden;
+    overflow: visible;    /* allow images to show outside if needed */
     border-radius: 8px;
-    width: 100%;                  /* fill available space */
 }
 
 .carousel-container {
     display: flex;
     transition: transform 0.5s ease-in-out;
-    width: 100%;
+    width: max-content;   /* important: don’t force container width to 100% */
 }
 
 .carousel-container img {
-    flex: 0 0 auto;               /* each image keeps its width */
-    width: 100%;                  /* scale to container */
+    flex: 0 0 auto;      /* each image keeps its natural width */
     height: auto;
-    object-fit: cover;
+    max-height: 500px;   /* optional: limit height */
+    object-fit: contain;
     border-radius: 8px;
 }
-
-
 
 /* Carousel Buttons */
 .carousel-prev,
@@ -456,15 +455,7 @@ a, button {
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
-    background-color: rgba(30, 144, 255, 0.3);
-    border: none;
-    color: #fff;
-    font-size: 2rem;
-    padding: 8px 14px;
-    cursor: pointer;
-    border-radius: 6px;
     z-index: 10;
-    transition: background-color 0.2s ease, transform 0.2s ease;
 }
 
 .carousel-prev:hover,
