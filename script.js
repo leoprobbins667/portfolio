@@ -226,67 +226,36 @@ if (customCursor) {
 // ==========================
 // Carousel
 // ==========================
-const carouselContainer = document.querySelector(".carousel-container");
-const prevBtn = document.querySelector(".carousel-prev");
-const nextBtn = document.querySelector(".carousel-next");
-let currentIndex = 0;
-
-function updateCarousel() {
-    const width = carouselContainer.clientWidth;
-    carouselContainer.style.transform = `translateX(-${currentIndex * width}px)`;
-}
-
-nextBtn.addEventListener("click", () => {
-    if (currentIndex < carouselContainer.children.length - 1) currentIndex++;
-    else currentIndex = 0;
-    updateCarousel();
-});
-
-prevBtn.addEventListener("click", () => {
-    if (currentIndex > 0) currentIndex--;
-    else currentIndex = carouselContainer.children.length - 1;
-    updateCarousel();
-});
-
-// Optional: auto-slide every 5 seconds
-setInterval(() => {
-    nextBtn.click();
-}, 5000);
-
 document.querySelectorAll('.scroll-carousel').forEach(carousel => {
     const images = carousel.querySelectorAll('img');
 
-    // Only activate if 4 or more images AND overflow exists
     if (images.length <= 3 || carousel.scrollWidth <= carousel.clientWidth) return;
 
     let targetScroll = carousel.scrollLeft;
     let currentScroll = carousel.scrollLeft;
-    let isHovering = false;
-    let hoverTimer = null;
+    let isPaused = false;
+    let pauseTimer = null;
 
     const speed = 1.2;
     const easing = 0.12;
-    const delay = 250;
+    const pauseDelay = 250;
 
     carousel.addEventListener('mouseenter', () => {
-        hoverTimer = setTimeout(() => {
-            isHovering = true;
-        }, delay);
+        // Start the pause timer
+        pauseTimer = setTimeout(() => {
+            isPaused = true;
+        }, pauseDelay);
     });
 
     carousel.addEventListener('mouseleave', () => {
-        clearTimeout(hoverTimer);
-        isHovering = false;
+        clearTimeout(pauseTimer);
+        isPaused = false;
     });
 
-    // THIS LISTENER ONLY EXISTS ON CAROUSELS WITH 4+ IMAGES
     carousel.addEventListener('wheel', (e) => {
-        if (!isHovering) return;
-
-        e.preventDefault(); // ONLY blocks scroll for this carousel when active
+        if (!isPaused) return; // Only scroll horizontally if pause time passed
+        e.preventDefault();
         targetScroll += e.deltaY * speed;
-
-        // Clamp
         targetScroll = Math.max(
             0,
             Math.min(targetScroll, carousel.scrollWidth - carousel.clientWidth)
@@ -301,4 +270,3 @@ document.querySelectorAll('.scroll-carousel').forEach(carousel => {
 
     animate();
 });
-
