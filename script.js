@@ -226,31 +226,37 @@ if (customCursor) {
 // ==========================
 // Carousel
 // ==========================
-document.querySelectorAll('.scroll-carousel').forEach(carousel => {
-    const images = carousel.querySelectorAll('img');
+document.addEventListener("DOMContentLoaded", () => {
+    document.querySelectorAll('.scroll-carousel').forEach(carousel => {
+        const images = carousel.querySelectorAll('img');
 
-    if (images.length < 4 || carousel.scrollWidth <= carousel.clientWidth) return;
+        // Only apply to carousels with 4+ images
+        if (images.length < 4 || carousel.scrollWidth <= carousel.clientWidth) return;
 
-    let targetScroll = carousel.scrollLeft;
-    let currentScroll = carousel.scrollLeft;
-    const speed = 1.5; // adjust for faster scroll
-    const easing = 0.12;
+        let targetScroll = carousel.scrollLeft;
+        let currentScroll = carousel.scrollLeft;
+        const speed = 1.5; // scroll speed multiplier
+        const easing = 0.12; // smoothness
 
-    carousel.addEventListener('wheel', (e) => {
-        e.preventDefault(); // prevent vertical scroll while over carousel
-        targetScroll += e.deltaY * speed;
-        targetScroll = Math.max(
-            0,
-            Math.min(targetScroll, carousel.scrollWidth - carousel.clientWidth)
-        );
-    }, { passive: false });
+        // Always listen to wheel events immediately
+        carousel.addEventListener('wheel', (e) => {
+            e.preventDefault(); // stop vertical scroll over carousel
+            targetScroll += e.deltaY * speed;
+            targetScroll = Math.max(
+                0,
+                Math.min(targetScroll, carousel.scrollWidth - carousel.clientWidth)
+            );
+        }, { passive: false });
 
-    function animate() {
-        currentScroll += (targetScroll - currentScroll) * easing;
-        carousel.scrollLeft = currentScroll;
-        requestAnimationFrame(animate);
-    }
+        // Animate horizontal scrolling smoothly
+        function animate() {
+            currentScroll += (targetScroll - currentScroll) * easing;
+            carousel.scrollLeft = currentScroll;
+            requestAnimationFrame(animate);
+        }
 
-    animate();
+        animate(); // start animation loop immediately
+    });
 });
+
 
