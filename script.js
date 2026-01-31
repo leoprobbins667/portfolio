@@ -253,19 +253,4 @@ setInterval(() => {
     nextBtn.click();
 }, 5000);
 
-document.querySelectorAll('.horizontal-gallery').forEach(gallery => {
-    const scrollContainer = gallery.querySelector('.scroll-carousel');
-    const prevBtn = gallery.querySelector('.gallery-prev');
-    const nextBtn = gallery.querySelector('.gallery-next');
-    const scrollAmount = 250; // adjust scroll per click
-
-    prevBtn.addEventListener('click', () => {
-        scrollContainer.scrollBy({ left: -scrollAmount, behavior: 'smooth' });
-    });
-
-    nextBtn.addEventListener('click', () => {
-        scrollContainer.scrollBy({ left: scrollAmount, behavior: 'smooth' });
-    });
-});
-
 
