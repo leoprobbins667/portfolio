@@ -315,7 +315,6 @@ body {
     transition: width 0.2s, height 0.2s, background-color 0.2s, box-shadow 0.2s;
 }
 
-
 a, button {
     cursor: none !important;
 }
@@ -330,7 +329,6 @@ a, button {
     z-index: 2147483646;
     transition: opacity 0.3s ease;
 }
-
 
 /* ==========================
    Section Divider
@@ -386,8 +384,6 @@ a, button {
     transform: translateY(0);
 }
 
-
-
 .project-detail .project-images {
     display: flex;
     flex-wrap: wrap;
@@ -414,7 +410,6 @@ a, button {
 .projects-video {
     flex: 0 0 600px; /* fixed width for video */
 }
-
 
 .projects-text {
     flex: 1;
@@ -747,3 +742,43 @@ body.home-page .top-header {
 .background-right p {
     margin-bottom: 15px;
 }
+
+/* ==========================
+   Carousel Wrapper Styles
+========================== */
+.carousel-wrapper {
+    position: relative;
+    overflow: hidden;
+    width: 100%;
+}
+
+.scroll-carousel {
+    display: flex;
+    gap: 10px;
+    overflow-x: auto;
+    scroll-behavior: smooth;
+    padding-bottom: 10px;
+}
+
+.carousel-prev,
+.carousel-next {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(30, 144, 255, 0.3);
+    border: none;
+    color: #fff;
+    font-size: 2rem;
+    padding: 0 12px;
+    cursor: pointer;
+    border-radius: 6px;
+    z-index: 1000;
+    transition: background-color 0.3s ease;
+}
+
+.carousel-prev:hover,
+.carousel-next:hover {
+    background: rgba(30, 144, 255, 0.6);
+}
+.carousel-prev { left: 10px; }
+.carousel-next { right: 10px; }
