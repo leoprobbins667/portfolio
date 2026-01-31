@@ -254,14 +254,31 @@ setInterval(() => {
 }, 5000);
 
 // ==========================
-// Horizontal scroll with mouse wheel (Windows support)
+// Horizontal scroll with hover delay + speed control
 // ==========================
 document.querySelectorAll('.scroll-carousel').forEach(carousel => {
+    let hoverTimer = null;
+    let isActive = false;
+    const speed = 3;      // scroll speed multiplier
+    const delay = 300;    // ms before activation
+
+    carousel.addEventListener('mouseenter', () => {
+        hoverTimer = setTimeout(() => {
+            isActive = true;
+        }, delay);
+    });
+
+    carousel.addEventListener('mouseleave', () => {
+        clearTimeout(hoverTimer);
+        isActive = false;
+    });
+
     carousel.addEventListener('wheel', (e) => {
+        if (!isActive) return;
+
         if (e.deltaY !== 0) {
             e.preventDefault();
-            carousel.scrollLeft += e.deltaY;
+            carousel.scrollLeft += e.deltaY * speed;
         }
     }, { passive: false });
 });
-
