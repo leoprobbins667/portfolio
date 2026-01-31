@@ -229,32 +229,15 @@ if (customCursor) {
 document.querySelectorAll('.scroll-carousel').forEach(carousel => {
     const images = carousel.querySelectorAll('img');
 
-    if (images.length <= 3 || carousel.scrollWidth <= carousel.clientWidth) return;
+    if (images.length < 4 || carousel.scrollWidth <= carousel.clientWidth) return;
 
     let targetScroll = carousel.scrollLeft;
     let currentScroll = carousel.scrollLeft;
-    let isPaused = false;
-    let pauseTimer = null;
-
-    const speed = 1.2;
+    const speed = 1.5; // adjust for faster scroll
     const easing = 0.12;
-    const pauseDelay = 250;
-
-    carousel.addEventListener('mouseenter', () => {
-        // Start the pause timer
-        pauseTimer = setTimeout(() => {
-            isPaused = true;
-        }, pauseDelay);
-    });
-
-    carousel.addEventListener('mouseleave', () => {
-        clearTimeout(pauseTimer);
-        isPaused = false;
-    });
 
     carousel.addEventListener('wheel', (e) => {
-        if (!isPaused) return; // Only scroll horizontally if pause time passed
-        e.preventDefault();
+        e.preventDefault(); // prevent vertical scroll while over carousel
         targetScroll += e.deltaY * speed;
         targetScroll = Math.max(
             0,
@@ -270,3 +253,4 @@ document.querySelectorAll('.scroll-carousel').forEach(carousel => {
 
     animate();
 });
+
