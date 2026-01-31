@@ -255,38 +255,41 @@ document.querySelectorAll('.horizontal-gallery').forEach(gallery => {
     });
 });
 
-document.addEventListener("DOMContentLoaded", () => {
-    const galleries = document.querySelectorAll(".horizontal-gallery");
+document.addEventListener("DOMContentLoaded", function() {
+    const carousels = document.querySelectorAll('.scroll-carousel');
 
-    galleries.forEach(gallery => {
-        const scrollContainer = gallery.querySelector(".scroll-carousel");
-        const images = scrollContainer.querySelectorAll("img");
+    carousels.forEach(carousel => {
+        const images = carousel.querySelectorAll('img');
 
-        // Only add buttons if 4 or more images
-        if (images.length >= 4) {
-            // Create buttons
-            const prevBtn = document.createElement("button");
-            prevBtn.className = "carousel-prev";
-            prevBtn.innerHTML = "‹";
-            const nextBtn = document.createElement("button");
-            nextBtn.className = "carousel-next";
-            nextBtn.innerHTML = "›";
+        if (images.length < 4) return; // Only add buttons if 4+ images
 
-            // Append buttons to the gallery
-            gallery.appendChild(prevBtn);
-            gallery.appendChild(nextBtn);
+        // Wrap carousel in a relative container
+        const container = document.createElement('div');
+        container.classList.add('projects-carousel');
+        carousel.parentNode.insertBefore(container, carousel);
+        container.appendChild(carousel);
 
-            // Scroll amount = width of one image + gap
-            const gap = parseInt(getComputedStyle(scrollContainer).gap) || 10;
-            const scrollAmount = images[0].offsetWidth + gap;
+        // Create prev button
+        const prevButton = document.createElement('button');
+        prevButton.classList.add('carousel-prev');
+        prevButton.innerHTML = '‹';
+        container.appendChild(prevButton);
 
-            prevBtn.addEventListener("click", () => {
-                scrollContainer.scrollBy({ left: -scrollAmount, behavior: "smooth" });
-            });
+        // Create next button
+        const nextButton = document.createElement('button');
+        nextButton.classList.add('carousel-next');
+        nextButton.innerHTML = '›';
+        container.appendChild(nextButton);
 
-            nextBtn.addEventListener("click", () => {
-                scrollContainer.scrollBy({ left: scrollAmount, behavior: "smooth" });
-            });
-        }
+        // Scroll behavior
+        const scrollAmount = 250; // Adjust scroll distance as needed
+
+        prevButton.addEventListener('click', () => {
+            carousel.scrollBy({ left: -scrollAmount, behavior: 'smooth' });
+        });
+
+        nextButton.addEventListener('click', () => {
+            carousel.scrollBy({ left: scrollAmount, behavior: 'smooth' });
+        });
     });
 });
