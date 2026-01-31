@@ -1,755 +1,256 @@
-/* ==========================
-   Base Styles
-========================== */
-html, body {
-    margin: 0;
-    padding: 0;
-    background-color: #000;
-    font-family: Arial, sans-serif;
-    color: #fff;
-    scroll-behavior: smooth;
-}
-
-#introVideo {
-    position: relative;
-    z-index: 2;
-    width: 100vw;
-    height: 100vh;
-    object-fit: cover;
-    display: block;
-    background-color: #000;
-}
-
-/* Allow cursor interactions to ignore the video on home page */
-body.home-page #introVideo {
-    pointer-events: none;
-}
-
-
-main {
-    min-height: 100vh;
-    padding: 60px;
-    background-color: #000;
-
-    /* Double vertical lines */
-    background-image:
-        linear-gradient(
-            90deg,
-            rgba(180,180,180,0.1) 0px,
-            rgba(180,180,180,0.1) 2px,
-            transparent 2px,
-            transparent 16px,
-            rgba(180,180,180,0.1) 16px,
-            rgba(180,180,180,0.1) 18px,
-            transparent 18px
-        );
-    background-size: 200px 100%;
-    background-position: center 0;
-}
-
-/* ==========================
-   Grid Container
-========================== */
-.grid-container {
-    max-width: 960px;
-    margin: 0 auto;
-    padding-left: 8px;
-    padding-right: 8px;
-}
-
-header, section {
-    padding-left: 0;
-}
-
-/* ==========================
-   Headers
-========================== */
-header h1 {
-    font-family: 'Fira Mono', monospace;
-    font-weight: 400;
-    font-size: 4.5rem;
-    letter-spacing: 1px;
-    color: #ffffff;
-    display: block;
-    line-height: 5.5rem;
-    height: 5.5rem;
-    overflow: hidden;
-    padding-bottom: 20px;
-}
-
-header h2 {
-    font-family: 'Fira Mono', monospace;
-    font-weight: 400;
-    font-size: 1.5rem;
-    margin-top: 0;
-    color: #ffffff;
-    letter-spacing: 0.5px;
-    display: inline-block;
-}
-
-header h3 {
-    font-family: 'Fira Mono', monospace;
-    font-weight: 400;
-    font-size: 2.0rem;
-    margin-top: 0;
-    color: #ffffff;
-    letter-spacing: 0.5px;
-    display: inline-block;
-}
-
-header h4 {
-    font-family: 'Fira Mono', monospace;
-    font-weight: 400;
-    font-size: 1.1rem;
-    margin-top: 0;
-    color: #ffffff;
-    letter-spacing: 0.5px;
-    display: inline-block;
-}
-
-/* ==========================
-   Sections
-========================== */
-section {
-    margin-top: 80px;
-}
-
-ul li {
-    margin-bottom: 10px;
-}
-
-p, li {
-    line-height: 1.6;
-}
-
-/* Optional hover for list items */
-ul li:hover {
-    color: #1e90ff;
-    cursor: pointer;
-    transition: color 0.3s ease;
-}
-
-/* ==========================
-   Projects Grid
-========================== */
-.projects-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 20px;
-    margin-top: 20px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
-    transition: box-shadow 0.3s ease;
-}
-
-.projects-grid:hover {
-    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.35);
-}
-
-.project-item {
-    border-radius: 8px;
-    overflow: hidden;
-}
-
-.project-image-container {
-    position: relative;
-    display: block;
-    width: 100%;
-    overflow: hidden;
-    border-radius: 8px;
-}
-.project-image-container img {
-    width: 100%;
-    height: auto;
-    display: block;
-    border-radius: 8px;
-    transition: transform 0.15s ease;
-}
-
-/* Overlay */
-.project-description {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0,0,0,0.7);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    opacity: 0;
-    color: #fff;
-    font-family: 'Fira Mono', monospace;
-    font-size: 1rem;
-    text-align: center;
-    padding: 0 10px;
-    border-radius: 8px;
-    transition: opacity 0.3s ease;
-}
-
-.project-title {
-    font-size: 1rem;
-}
-
-.project-skills {
-    font-size: 0.75rem;
-    opacity: 0.7;
-    margin-top: 6px;
-}
-
-/* Hover overlay */
-.project-item:hover .project-description {
-    opacity: 1;
-}
-
-/* ==========================
-   Contact Section
-========================== */
-#contact {
-    margin-top: 80px;
-    font-family: 'Fira Mono', monospace;
-}
-
-#contact a {
-    color: #1e90ff;
-    text-decoration: none;
-}
-
-#contact a:hover {
-    text-decoration: underline;
-}
-
-.contact-form {
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
-    margin-top: 20px;
-}
-
-.contact-form input,
-.contact-form textarea {
-    padding: 10px;
-    border-radius: 6px;
-    border: 1px solid #555;
-    background-color: #111;
-    color: #fff;
-    font-family: 'Fira Mono', monospace;
-    font-size: 1rem;
-    resize: none;
-}
-
-.contact-form input:focus,
-.contact-form textarea:focus {
-    outline: none;
-    border-color: #1e90ff;
-}
-
-.contact-form button {
-    padding: 10px 20px;
-    background-color: #1e90ff;
-    border: none;
-    border-radius: 6px;
-    color: #fff;
-    font-family: 'Fira Mono', monospace;
-    font-size: 1rem;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-}
-
-.contact-form button:hover {
-    background-color: #0d6fb8;
-}
-
-/* ==========================
-   Footer
-========================== */
-footer {
-    margin-top: 60px;
-    padding: 20px 0;
-    text-align: center;
-    font-family: 'Fira Mono', monospace;
-    font-size: 0.9rem;
-    color: #aaa;
-    border-top: 1px solid #333;
-}
-
-/* ==========================
-   Custom Cursor
-========================== */
-body {
-    cursor: none;
-}
-
-#custom-cursor {
-    position: fixed;
-    width: 50px;
-    height: 50px;
-    background-color: rgba(30, 144, 255, 0.2);
-    border-radius: 50%;
-    pointer-events: none;
-    z-index: 100000;
-    transition: all 0.15s ease;
-}
-
-#custom-cursor.caret {
-    width: 2px;
-    height: 25px;
-    background-color: rgba(30, 144, 255, 0.9);
-    border-radius: 1px;
-    box-shadow: 0 0 10px rgba(30, 144, 255, 1);
-    animation: blink 1s steps(2, start) infinite;
-}
-
-@keyframes blink {
-    0%, 50% { opacity: 1; }
-    51%, 100% { opacity: 0; }
-}
-
-/* Custom cursor button hover */
-#custom-cursor.button-hover {
-    width: 10px;
-    height: 10px;
-    background-color: rgba(30, 144, 255, 0.8);
-    box-shadow: 0 0 15px rgba(30, 144, 255, 0.6);
-    border-radius: 50%;
-    transition: width 0.2s, height 0.2s, background-color 0.2s, box-shadow 0.2s;
-}
-
-
-a, button {
-    cursor: none !important;
-}
-
-.cursor-trail {
-    position: fixed;
-    width: 8px;
-    height: 8px;
-    background: rgba(30, 144, 255, 0.25);
-    border-radius: 50%;
-    pointer-events: none;
-    z-index: 2147483646;
-    transition: opacity 0.3s ease;
-}
-
-
-/* ==========================
-   Section Divider
-========================== */
-.section-divider {
-    margin: 20px 0;
-    height: 20px;
-    position: relative;
-}
-
-.section-divider::before,
-.section-divider::after {
-    content: "";
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    width: 2px;
-}
-
-.section-divider::before {
-    left: 50%;
-    transform: translateX(-6px);
-}
-
-.section-divider::after {
-    left: 50%;
-    transform: translateX(6px);
-}
-
-/* Background for alternating project sections */
-#projects > h2:nth-of-type(odd) + .projects-grid {
-    background-color: rgba(255, 255, 255, 0.02);
-    padding: 10px;
-    border-radius: 8px;
-}
-
-#projects > h2:nth-of-type(even) + .projects-grid {
-    background-color: rgba(255, 255, 255, 0.04);
-    padding: 10px;
-    border-radius: 8px;
-}
-
-.projects-grid:hover {
-    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.35);
-}
-
-.fade-in-section {
-    opacity: 0;
-    transform: translateY(20px);
-    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
-}
-
-.fade-in-section.visible {
-    opacity: 1;
-    transform: translateY(0);
-}
-
-
-
-.project-detail .project-images {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 20px;
-    margin-top: 20px;
-}
-
-.project-detail .project-images img {
-    width: 100%;
-    max-width: 600px; /* limits the size */
-    height: auto;
-    border-radius: 8px;
-    transition: transform 0.3s ease;
-    object-fit: cover;
-}
-
-.projects-flex {
-    display: flex;
-    gap: 60px; /* space between text and video */
-    align-items: flex-start;
-    justify-content: space-between; /* ensures video goes to the right */
-}
-
-.projects-video {
-    flex: 0 0 600px; /* fixed width for video */
-}
-
-
-.projects-text {
-    flex: 1;
-}
-
-.projects-text h2 {
-    font-size: 2rem;
-    margin-bottom: 20px;
-}
-
-.projects-text p {
-    font-size: 1.1rem;
-    line-height: 1.6;
-}
-
-.projects-carousel {
-    flex: 1;
-    position: relative;
-    overflow: hidden;
-    border-radius: 8px;
-    max-width: 300px;
-    height: auto;
-}
-
-.carousel-container {
-    display: flex;
-    transition: transform 0.5s ease-in-out;
-}
-
-.carousel-container img {
-    width: 100%;
-    height: auto;
-    object-fit: contain;
-    flex-shrink: 0;
-    border-radius: 8px;
-}
-
-.carousel-prev, .carousel-next {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    background: rgba(30, 144, 255, 0.1);
-    border: none;
-    color: white;
-    font-size: 2rem;
-    padding: 0 12px;
-    cursor: pointer;
-    border-radius: 6px;
-}
-
-.carousel-prev { left: 10px; }
-.carousel-next { right: 10px; }
-
-.carousel-button {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    background-color: rgba(30, 144, 255, 0.3);
-    border: none;
-    color: #fff;
-    padding: 10px;
-    cursor: pointer;
-    border-radius: 6px;
-    font-size: 1.2rem;
-    z-index: 10;
-    transition: background-color 0.3s ease;
-}
-
-.carousel-button:hover {
-    background-color: rgba(30, 144, 255, 0.6);
-}
-
-.scroll-carousel {
-    display: flex;
-    gap: 10px;
-    overflow-x: auto;
-    scroll-behavior: smooth;
-    padding-bottom: 10px;
-}
-
-.scroll-carousel img {
-    flex-shrink: 0;
-    width: 250px; /* fixed card size */
-    height: auto;
-    border-radius: 8px;
-    object-fit: cover;
-}
-
-.scroll-carousel::-webkit-scrollbar {
-    height: 6px;
-}
-.scroll-carousel::-webkit-scrollbar-thumb {
-    background: rgba(30,144,255,0.5);
-    border-radius: 3px;
-}
-
-.horizontal-gallery {
-    position: relative;
-    overflow: hidden;
-    margin-bottom: 50px;
-}
-
-/* ==========================
-   Project Page Header
-========================== */
-.project-header {
-    width: 100%;
-    padding: 24px 0;
-    display: flex;
-    justify-content: center;
-}
-
-.project-header img {
-    height: 48px;
-    width: auto;
-    opacity: 0.85;
-    transition: opacity 0.3s ease, transform 0.3s ease;
-}
-
-.project-header img:hover {
-    opacity: 1;
-    transform: translateY(-2px);
-}
-
-.project-header {
-    justify-content: flex-start;
-    padding-left: 60px;
-}
-
-.projects-video {
-    width: 100%;
-    max-width: 600px;
-    height: auto;
-}
-
-.projects-video video {
-    width: 100%;
-    height: auto;
-    object-fit: contain;
-    border-radius: 8px;
-    display: block;
-    background-color: #000;
-}
-
-.projects-video video {
-    width: 100%;
-    height: auto; 
-    object-fit: contain;
-    border-radius: 8px;
-    display: block;
-    background-color: #000;
-}
-
-.resonance-video {
-    width: 100%;
-    max-width: 500px;
-    height: auto;
-    border-radius: 8px;
-    flex: 0 0 600px;
-    margin-left: 100px;
-}
-
-.resonance-video-container {
-    margin-left: 40px;
-    margin-right: 0;
-}
-
-.photo-row {
-    display: flex;
-    gap: 10px;
-    justify-content: space-between;
-    margin-top: 40px;
-}
-
-.photo-row img {
-    width: 32%;
-    height: auto;
-    border-radius: 8px;
-    object-fit: cover;
-}
-
-.full-image-section {
-    display: flex;
-    justify-content: flex-end;
-    margin: 40px 0;
-}
-
-.full-image-section img {
-    width: 100%;
-    max-width: 600px;
-    height: auto;
-    border-radius: 8px;
-    object-fit: cover;
-}
-
-.poster-image {
-    width: 100%;
-    max-width: 500px;
-    height: auto;
-    border-radius: 8px;
-    object-fit: contain;
-    box-shadow: 0 4px 18px rgba(0,0,0,0.4);
-    margin-left: 120px;
-}
-
-.projects-video-hokie {
-    flex: 1;
-    max-width: 300px;
-    margin-left: auto;
-}
-
-.projects-video-hokie video {
-    width: 100%;
-    height: auto;
-    aspect-ratio: 702 / 1440;
-    border-radius: 8px;
-    display: block;
-}
-
-.top-header {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 70px;
-    background-color: #0f0f0f;
-    display: flex;
-    align-items: center;
-    padding: 0 30px;
-    z-index: 9999;
-    border-bottom: 1px solid #222;
-}
-
-.top-header .logo {
-    height: 50px;
-    width: auto;
-}
-
-.top-header .header-right {
-    display: flex;
-    align-items: center;
-    margin-left: 1050px;
-}
-
-/* spacing between individual links */
-.top-header .header-right a {
-    color: #fff;
-    text-decoration: none;
-    margin-left: 30px;
-    font-family: 'Fira Mono', monospace;
-    font-weight: 400;
-    transition: color 0.3s;
-}
+document.addEventListener("DOMContentLoaded", () => {
+    // ==========================
+    // Video Player & Header Phrase Changer
+    // ==========================
+    const video = document.getElementById("introVideo");
+    const home = document.getElementById("home");
+    const animatedText = document.getElementById("animated-text");
+    const phrases = ["hello world"];
+    let currentIndex = 0;
+    let switchInterval;
+
+    if (animatedText) {
+        const playVideo = !sessionStorage.getItem("videoPlayed");
+
+        if (!video || !playVideo) {
+            // No video or video already played: skip video, start header animation immediately
+            if (video) video.remove();
+            switchInterval = setInterval(() => {
+                currentIndex = (currentIndex + 1) % phrases.length;
+                animatedText.textContent = phrases[currentIndex];
+            }, 5000);
+        } else if (home) {
+            // Video exists and hasn't played yet
+            document.body.style.overflow = "hidden";
+
+            video.addEventListener("ended", () => {
+                document.body.style.overflow = "auto";
+                home.scrollIntoView({ behavior: "smooth" });
+                setTimeout(() => {
+                    video.remove();
+                    window.scrollTo(0, home.offsetTop);
+                }, 1200);
+
+                switchInterval = setInterval(() => {
+                    currentIndex = (currentIndex + 1) % phrases.length;
+                    animatedText.textContent = phrases[currentIndex];
+                }, 5000);
+
+                // Mark video as played for this tab
+                sessionStorage.setItem("videoPlayed", "true");
+            });
+        }
+    }
+
+
+// ==========================
+// Custom Cursor
+// ==========================
+const customCursor = document.getElementById("custom-cursor");
+if (customCursor) {
+    let mouseX = 0, mouseY = 0;
+    let cursorX = 0, cursorY = 0;
+    const speed = 0.15;
+
+    document.addEventListener("mousemove", (e) => {
+        mouseX = e.clientX;
+        mouseY = e.clientY;
+    });
+
+    // Trail elements
+    const trailCount = 40;
+    const trailElements = [];
+    for (let i = 0; i < trailCount; i++) {
+        const dot = document.createElement("div");
+        dot.className = "cursor-trail";
+        document.body.appendChild(dot);
+        trailElements.push({ el: dot, x: mouseX, y: mouseY });
+    }
+
+    // Hide cursor on inputs/textareas/selects
+    const hideTargets = document.querySelectorAll('input, textarea, select');
+    hideTargets.forEach(el => {
+        el.addEventListener('mouseenter', () => { customCursor.style.display = 'none'; });
+        el.addEventListener('mouseleave', () => { customCursor.style.display = 'block'; });
+    });
+
+    // Caret hover targets (text elements)
+    const caretTargets = document.querySelectorAll('h1, h2, h3, h4, p, li');
+
+    caretTargets.forEach(el => {
+        el.addEventListener('mouseenter', () => {
+            customCursor.classList.add('caret');
+            customCursor._targetElement = el;
+        });
+        el.addEventListener('mouseleave', () => {
+            customCursor.classList.remove('caret');
+            customCursor._targetElement = null;
+        });
+    });
+
+    // Button/interactive hover targets (buttons, links, project items, logo)
+    const buttonTargets = document.querySelectorAll(
+        'button, .header-right a, .project-item, .header-left'
+    );
+
+    buttonTargets.forEach(el => {
+        el.addEventListener('mouseenter', () => {
+            customCursor.classList.add('button-hover');
+            customCursor.classList.remove('caret');
+            customCursor._targetElement = el;
+
+            // Initialize hover position once to prevent jumps
+            customCursor._hoverX = cursorX;
+            customCursor._hoverY = cursorY;
+        });
+        el.addEventListener('mouseleave', () => {
+            customCursor.classList.remove('button-hover');
+            customCursor._targetElement = null;
+
+            // Reset hover position
+            customCursor._hoverX = undefined;
+            customCursor._hoverY = undefined;
+        });
+    });
+
+    function animateCursor() {
+        cursorX += (mouseX - cursorX) * speed;
+        cursorY += (mouseY - cursorY) * speed;
+
+        customCursor.style.transform = `translate3d(${cursorX - customCursor.offsetWidth / 2}px, ${cursorY - customCursor.offsetHeight / 2}px, 0)`;
+
+        const dx = mouseX - (customCursor._lastX || mouseX);
+        const dy = mouseY - (customCursor._lastY || mouseY);
+        const speedMag = Math.min(Math.sqrt(dx*dx + dy*dy), 250);
+        const angle = Math.atan2(dy, dx);
+
+        // Normal cursor trail
+        if (!customCursor.classList.contains('caret') && !customCursor.classList.contains('button-hover')) {
+            trailElements.forEach((trail, index) => {
+                const prev = index === 0 ? { x: cursorX, y: cursorY } : trailElements[index - 1];
+                trail.x += (prev.x - trail.x) * 0.05;
+                trail.y += (prev.y - trail.y) * 0.05;
+
+                const taper = 1 - index / trailCount;
+                const length = 15 * taper + speedMag * 0.6 * taper;
+                const width = 6 * taper;
+                trail.el.style.width = `${width}px`;
+                trail.el.style.height = `${length}px`;
+                trail.el.style.transform = `translate(${trail.x - width/2}px, ${trail.y - length/2}px) rotate(${angle}rad)`;
+                trail.el.style.opacity = `${0.4 * taper}`;
+                trail.el.style.borderRadius = `${width/2}px`;
+            });
+
+            const moving = Math.abs(cursorX - (customCursor._lastX || 0)) > 0.1 || Math.abs(cursorY - (customCursor._lastY || 0)) > 0.1;
+            if (moving) {
+                customCursor.style.width = "18px";
+                customCursor.style.height = "18px";
+                customCursor.style.backgroundColor = "rgba(30, 144, 255, 0.85)";
+                customCursor.style.boxShadow = "0 0 25px rgba(30, 144, 255, 1)";
+                customCursor.style.borderRadius = "50%";
+            } else {
+                customCursor.style.width = "50px";
+                customCursor.style.height = "50px";
+                customCursor.style.backgroundColor = "rgba(30, 144, 255, 0.2)";
+                customCursor.style.boxShadow = "none";
+                customCursor.style.borderRadius = "50%";
+            }
+        }
+
+        // Caret for text
+        if (customCursor.classList.contains('caret') && customCursor._targetElement) {
+            const fontSize = parseFloat(window.getComputedStyle(customCursor._targetElement).fontSize);
+            customCursor.style.width = "2px";
+            customCursor.style.height = `${fontSize}px`;
+            customCursor.style.backgroundColor = "rgba(30, 144, 255, 0.9)";
+            customCursor.style.borderRadius = "1px";
+            customCursor.style.boxShadow = "0 0 10px rgba(30, 144, 255, 1)";
+        }
+
+        // Button hover square (including project-item vanish)
+        if (customCursor.classList.contains('button-hover')) {
+            // Shrink to 0 if hovering project-item, else normal size 10
+            const size = customCursor._targetElement && customCursor._targetElement.classList.contains('project-item') ? 0 : 10;
+
+            // Smooth movement
+            if (customCursor._hoverX !== undefined && customCursor._hoverY !== undefined) {
+                customCursor._hoverX += (cursorX - customCursor._hoverX) * speed;
+                customCursor._hoverY += (cursorY - customCursor._hoverY) * speed;
+            }
+
+            // Smooth resizing
+            const currentWidth = parseFloat(customCursor.style.width) || 0;
+            const currentHeight = parseFloat(customCursor.style.height) || 0;
+            customCursor.style.width = `${currentWidth + (size - currentWidth) * speed}px`;
+            customCursor.style.height = `${currentHeight + (size - currentHeight) * speed}px`;
+
+            // Apply transform
+            customCursor.style.transform = `translate3d(${customCursor._hoverX - size/2}px, ${customCursor._hoverY - size/2}px, 0)`;
+            customCursor.style.borderRadius = "4px";
+            customCursor.style.backgroundColor = "rgba(30, 144, 255, 0.9)";
+            customCursor.style.boxShadow = size === 0 ? "none" : "0 0 10px rgba(30, 144, 255, 0.8)";
+        }
+
+        customCursor._lastX = cursorX;
+        customCursor._lastY = cursorY;
+
+        requestAnimationFrame(animateCursor);
+    }
+
+    animateCursor();
+}
+
+
+
+    // ==========================
+    // Project Image Parallax Effect
+    // ==========================
+    document.querySelectorAll('.project-item').forEach(item => {
+        const img = item.querySelector('img');
+        if (!img) return;
+
+        item.addEventListener('mousemove', (e) => {
+            const rect = item.getBoundingClientRect();
+            const offsetX = ((e.clientX - rect.left) / rect.width - 0.5) * 20;
+            const offsetY = ((e.clientY - rect.top) / rect.height - 0.5) * 20;
+            img.style.transform = `translate(${offsetX}px, ${offsetY}px) scale(1.07)`;
+        });
+
+        item.addEventListener('mouseleave', () => {
+            img.style.transform = `translate(0, 0) scale(1)`;
+        });
+    });
+
+});
+
+// ==========================
+// Carousel
+// ==========================
+const carouselContainer = document.querySelector(".carousel-container");
+const prevBtn = document.querySelector(".carousel-prev");
+const nextBtn = document.querySelector(".carousel-next");
+let currentIndex = 0;
+
+function updateCarousel() {
+    const width = carouselContainer.clientWidth;
+    carouselContainer.style.transform = `translateX(-${currentIndex * width}px)`;
+}
+
+nextBtn.addEventListener("click", () => {
+    if (currentIndex < carouselContainer.children.length - 1) currentIndex++;
+    else currentIndex = 0;
+    updateCarousel();
+});
+
+prevBtn.addEventListener("click", () => {
+    if (currentIndex > 0) currentIndex--;
+    else currentIndex = carouselContainer.children.length - 1;
+    updateCarousel();
+});
+
+// Optional: auto-slide every 5 seconds
+setInterval(() => {
+    nextBtn.click();
+}, 5000);
 
-.top-header .header-right a:hover {
-    color: #1e90ff;
-}
-
-body main {
-    padding-top: 90px;
-}
-
-body.home-page .top-header {
-    z-index: 1; /* lower than the video */
-}
-
-/* About Me Page */
-.about-flex {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 40px;
-    margin-top: 40px;
-}
-
-.about-text {
-    flex: 1;
-    min-width: 300px;
-    font-family: 'Fira Mono', monospace;
-    line-height: 1.6;
-}
-
-.about-image {
-    flex: 1;
-    min-width: 250px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.about-image img {
-    max-width: 100%;
-    border-radius: 12px;
-    box-shadow: 0 0 20px rgba(0,0,0,0.2);
-}
 
-/* Background Section */
-.background-section {
-    background-color: #0f0f0f;
-    color: #fff;
-    padding: 60px 30px;
-}
-
-.background-container {
-    display: flex;
-    align-items: center;
-    max-width: 1200px;
-    margin: 0 auto;
-    gap: 50px;
-}
-
-.background-left {
-    flex: 1;
-}
-
-.background-left .about-photo {
-    width: 100%;
-    max-width: 400px;
-    border-radius: 10px;
-    object-fit: cover;
-}
-
-.background-right {
-    flex: 2;
-    font-family: 'Fira Mono', monospace;
-    line-height: 1.6;
-}
-
-.background-right h2 {
-    font-size: 2rem;
-    margin-bottom: 20px;
-    color: #1e90ff;
-}
-
-.background-right p {
-    margin-bottom: 15px;
-}
