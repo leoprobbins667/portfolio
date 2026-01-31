@@ -405,7 +405,7 @@ a, button {
     gap: 60px;
     align-items: flex-start;
     justify-content: flex-start;
-    flex-wrap: wrap; /* allow wrapping on small screens */
+    flex-wrap: wrap;
 }
 
 .projects-video {
@@ -427,24 +427,24 @@ a, button {
 }
 
 .projects-carousel {
-    flex: 1 1 auto;       /* grow and shrink freely */
-    min-width: 400px;     /* prevents it from collapsing too small */
-    max-width: 100%;      /* ensures it doesn’t exceed parent */
+    flex: 1 1 500px;   /* grow/shrink, but minimum 500px */
+    max-width: 100%;
     position: relative;
-    overflow: visible;    /* allow images to show outside if needed */
+    overflow: hidden;  /* clip the overflow for scrolling carousel */
     border-radius: 8px;
 }
 
 .carousel-container {
     display: flex;
     transition: transform 0.5s ease-in-out;
-    width: max-content;   /* important: don’t force container width to 100% */
+    width: 100%;       /* container fills available space */
 }
 
 .carousel-container img {
-    flex: 0 0 auto;      /* each image keeps its natural width */
+    flex: 0 0 auto;    /* prevent shrinking, but don’t force size */
     height: auto;
-    max-height: 500px;   /* optional: limit height */
+    max-width: 100%;   /* images scale down if needed */
+    max-height: 400px; /* optional: cap height */
     object-fit: contain;
     border-radius: 8px;
 }
