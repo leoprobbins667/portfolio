@@ -253,24 +253,20 @@ setInterval(() => {
     nextBtn.click();
 }, 5000);
 
-// ==========================
-// Smart horizontal scroll with inertia
-// ==========================
 document.querySelectorAll('.scroll-carousel').forEach(carousel => {
     const images = carousel.querySelectorAll('img');
 
-    // Only activate if it makes sense
-    if (images.length <= 3) return;
-    if (carousel.scrollWidth <= carousel.clientWidth) return;
+    // Only activate if 4 or more images AND overflow exists
+    if (images.length <= 3 || carousel.scrollWidth <= carousel.clientWidth) return;
 
     let targetScroll = carousel.scrollLeft;
     let currentScroll = carousel.scrollLeft;
     let isHovering = false;
     let hoverTimer = null;
 
-    const speed = 1.2;   // how fast wheel adds to target
-    const easing = 0.12; // lower = smoother (0.08–0.15 is good)
-    const delay = 250;   // ms hover before activation
+    const speed = 1.2;
+    const easing = 0.12;
+    const delay = 250;
 
     carousel.addEventListener('mouseenter', () => {
         hoverTimer = setTimeout(() => {
@@ -283,10 +279,11 @@ document.querySelectorAll('.scroll-carousel').forEach(carousel => {
         isHovering = false;
     });
 
+    // THIS LISTENER ONLY EXISTS ON CAROUSELS WITH 4+ IMAGES
     carousel.addEventListener('wheel', (e) => {
         if (!isHovering) return;
 
-        e.preventDefault();
+        e.preventDefault(); // ONLY blocks scroll for this carousel when active
         targetScroll += e.deltaY * speed;
 
         // Clamp
@@ -304,3 +301,4 @@ document.querySelectorAll('.scroll-carousel').forEach(carousel => {
 
     animate();
 });
+
