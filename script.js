@@ -226,30 +226,31 @@ if (customCursor) {
 // ==========================
 // Carousel
 // ==========================
-document.addEventListener("DOMContentLoaded", () => {
-    document.querySelectorAll('.scroll-carousel').forEach(carousel => {
-        const images = carousel.querySelectorAll('img');
+document.querySelectorAll('.horizontal-gallery').forEach(gallery => {
+    const scrollContainer = gallery.querySelector('.scroll-carousel');
 
-        if (images.length < 4 || carousel.scrollWidth <= carousel.clientWidth) return;
+    // Only add buttons if there are 4+ images
+    if (!scrollContainer || scrollContainer.children.length < 4) return;
 
-        let scrollAmount = 0;
-        let ticking = false;
+    // Create Prev/Next buttons
+    const prevBtn = document.createElement('button');
+    const nextBtn = document.createElement('button');
+    prevBtn.textContent = '‹';
+    nextBtn.textContent = '›';
 
-        carousel.addEventListener('wheel', (e) => {
-            e.preventDefault();
-            scrollAmount += e.deltaY * 1.5; // adjust speed
+    prevBtn.className = 'gallery-prev';
+    nextBtn.className = 'gallery-next';
 
-            if (!ticking) {
-                window.requestAnimationFrame(() => {
-                    carousel.scrollLeft += scrollAmount;
-                    scrollAmount = 0;
-                    ticking = false;
-                });
-                ticking = true;
-            }
-        }, { passive: false });
+    gallery.appendChild(prevBtn);
+    gallery.appendChild(nextBtn);
+
+    const scrollAmount = 250; // pixels per click
+
+    prevBtn.addEventListener('click', () => {
+        scrollContainer.scrollBy({ left: -scrollAmount, behavior: 'smooth' });
+    });
+
+    nextBtn.addEventListener('click', () => {
+        scrollContainer.scrollBy({ left: scrollAmount, behavior: 'smooth' });
     });
 });
-
-
-
