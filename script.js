@@ -230,14 +230,23 @@ document.addEventListener("DOMContentLoaded", () => {
     document.querySelectorAll('.scroll-carousel').forEach(carousel => {
         const images = carousel.querySelectorAll('img');
 
-        // Only apply to carousels with 4+ images
         if (images.length < 4 || carousel.scrollWidth <= carousel.clientWidth) return;
 
-        const speed = 1.5; // adjust scroll speed if needed
+        let scrollAmount = 0;
+        let ticking = false;
 
         carousel.addEventListener('wheel', (e) => {
-            e.preventDefault(); // prevent vertical scrolling while over the carousel
-            carousel.scrollLeft += e.deltaY * speed; // instantly scroll horizontally
+            e.preventDefault();
+            scrollAmount += e.deltaY * 1.5; // adjust speed
+
+            if (!ticking) {
+                window.requestAnimationFrame(() => {
+                    carousel.scrollLeft += scrollAmount;
+                    scrollAmount = 0;
+                    ticking = false;
+                });
+                ticking = true;
+            }
         }, { passive: false });
     });
 });
