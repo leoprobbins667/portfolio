@@ -428,24 +428,26 @@ a, button {
 .projects-carousel {
     flex: 1;
     position: relative;
-    overflow: hidden;
+    overflow: hidden;  /* keeps buttons visible but allows images to fill */
     border-radius: 8px;
-    max-width: 300px;
-    height: auto;
+    width: 100%;        /* fill parent container */
+    max-width: 100%;    /* don’t shrink below parent width */
 }
 
 .carousel-container {
     display: flex;
     transition: transform 0.5s ease-in-out;
+    width: 100%;       /* fill the container */
 }
 
 .carousel-container img {
-    width: 100%;
+    flex: 0 0 100%;     /* each image takes full container width */
+    width: 100%;        /* scale image to container */
     height: auto;
-    object-fit: contain;
-    flex-shrink: 0;
+    object-fit: cover;  /* maintain aspect ratio */
     border-radius: 8px;
 }
+
 
 /* Carousel Buttons */
 .carousel-prev,
