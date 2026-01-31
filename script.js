@@ -253,4 +253,15 @@ setInterval(() => {
     nextBtn.click();
 }, 5000);
 
+// ==========================
+// Horizontal scroll with mouse wheel (Windows support)
+// ==========================
+document.querySelectorAll('.scroll-carousel').forEach(carousel => {
+    carousel.addEventListener('wheel', (e) => {
+        if (e.deltaY !== 0) {
+            e.preventDefault();
+            carousel.scrollLeft += e.deltaY;
+        }
+    }, { passive: false });
+});
 
