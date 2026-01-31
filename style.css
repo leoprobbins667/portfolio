@@ -427,24 +427,26 @@ a, button {
 }
 
 .projects-carousel {
-    flex: 1 1 500px;   /* grow/shrink, but minimum 500px */
-    max-width: 100%;
+    flex: 1 1 500px;     /* allows shrink/grow */
+    max-width: 600px;    /* limit the carousel width */
+    width: 100%;
     position: relative;
-    overflow: hidden;  /* clip the overflow for scrolling carousel */
+    overflow: hidden;
     border-radius: 8px;
 }
 
 .carousel-container {
     display: flex;
     transition: transform 0.5s ease-in-out;
-    width: 100%;       /* container fills available space */
+    width: 100%;
 }
 
 .carousel-container img {
-    flex: 0 0 auto;    /* prevent shrinking, but don’t force size */
+    flex: 0 0 auto;      /* don't shrink images */
+    width: 100%;         /* scale to container width */
+    max-width: 100%;     /* never exceed container */
     height: auto;
-    max-width: 100%;   /* images scale down if needed */
-    max-height: 400px; /* optional: cap height */
+    max-height: 400px;   /* optional: limit height */
     object-fit: contain;
     border-radius: 8px;
 }
