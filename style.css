@@ -362,13 +362,11 @@ a, button {
 
 /* Background for alternating project sections */
 #projects > h2:nth-of-type(odd) + .projects-grid {
-    background-color: rgba(255, 255, 255, 0.02);
     padding: 10px;
     border-radius: 8px;
 }
 
 #projects > h2:nth-of-type(even) + .projects-grid {
-    background-color: rgba(255, 255, 255, 0.04);
     padding: 10px;
     border-radius: 8px;
 }
