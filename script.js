@@ -254,3 +254,39 @@ document.querySelectorAll('.horizontal-gallery').forEach(gallery => {
         scrollContainer.scrollBy({ left: scrollAmount, behavior: 'smooth' });
     });
 });
+
+document.addEventListener("DOMContentLoaded", () => {
+    const galleries = document.querySelectorAll(".horizontal-gallery");
+
+    galleries.forEach(gallery => {
+        const scrollContainer = gallery.querySelector(".scroll-carousel");
+        const images = scrollContainer.querySelectorAll("img");
+
+        // Only add buttons if 4 or more images
+        if (images.length >= 4) {
+            // Create buttons
+            const prevBtn = document.createElement("button");
+            prevBtn.className = "carousel-prev";
+            prevBtn.innerHTML = "‹";
+            const nextBtn = document.createElement("button");
+            nextBtn.className = "carousel-next";
+            nextBtn.innerHTML = "›";
+
+            // Append buttons to the gallery
+            gallery.appendChild(prevBtn);
+            gallery.appendChild(nextBtn);
+
+            // Scroll amount = width of one image + gap
+            const gap = parseInt(getComputedStyle(scrollContainer).gap) || 10;
+            const scrollAmount = images[0].offsetWidth + gap;
+
+            prevBtn.addEventListener("click", () => {
+                scrollContainer.scrollBy({ left: -scrollAmount, behavior: "smooth" });
+            });
+
+            nextBtn.addEventListener("click", () => {
+                scrollContainer.scrollBy({ left: scrollAmount, behavior: "smooth" });
+            });
+        }
+    });
+});
