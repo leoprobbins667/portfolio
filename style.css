@@ -525,6 +525,14 @@ a, button {
     margin-bottom: 50px;
 }
 
+.scroll-carousel .item img {
+    width: 200px;      /* or whatever max width you want */
+    height: auto;      /* keeps aspect ratio */
+    margin-right: 10px; /* spacing between images */
+    border-radius: 6px; /* optional, looks nicer */
+}
+
+
 /* ==========================
    Project Page Header
 ========================== */
