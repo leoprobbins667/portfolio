@@ -488,11 +488,18 @@ a, button {
 }
 
 .scroll-carousel {
-    cursor: grab;
-    overflow-x: auto;
-    scroll-behavior: smooth;
-    user-select: none; /* prevent text/image selection */
+  display: flex;
+  flex-wrap: nowrap;        /* force single row */
+  overflow-x: auto;         /* allow horizontal scrolling */
+  scroll-behavior: smooth;  /* smooth scroll for auto-slide */
+  gap: 20px;                /* optional spacing between items */
 }
+
+.scroll-carousel .item {
+  flex: 0 0 auto;           /* don't shrink, maintain width */
+  width: 300px;             /* set your desired item width */
+}
+
 
 .scroll-carousel.active {
     cursor: grabbing;
