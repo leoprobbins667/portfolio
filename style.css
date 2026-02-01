@@ -526,9 +526,9 @@ a, button {
 }
 
 .scroll-carousel .item img {
-    width: 200px;        /* smaller width */
+    width: 250;        /* smaller width */
     height: auto;
-    border-radius: 8px;
+    border-radius: 2px;
     object-fit: cover;
 }
 
