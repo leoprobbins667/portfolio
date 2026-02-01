@@ -435,8 +435,7 @@ a, button {
     position: relative;
     overflow: hidden;
     border-radius: 8px;
-    max-width: 300px;
-    height: auto;
+    width: 100%;
 }
 
 .carousel-container {
@@ -497,13 +496,13 @@ a, button {
 
 .scroll-carousel .item {
     flex: 0 0 auto;
-    height: 220px;        /* ONE consistent height */
+    height: 340px;   /* 300–380 is the sweet spot */
 }
 
 .scroll-carousel .item img {
     height: 100%;
-    width: auto;         /* width adapts */
-    object-fit: contain; /* or cover if you want cropping */
+    width: auto;
+    object-fit: contain;
     border-radius: 8px;
 }
 
@@ -527,10 +526,10 @@ a, button {
 }
 
 .horizontal-gallery {
-    position: relative;
-    overflow: hidden;
-    margin-bottom: 50px;
+    width: 100vw;
+    margin-left: calc(-50vw + 50%);
 }
+
 
 /* ==========================
    Project Page Header
