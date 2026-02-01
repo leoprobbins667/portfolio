@@ -492,7 +492,7 @@ a, button {
   flex-wrap: nowrap;    
   overflow-x: auto;     
   scroll-behavior: smooth;
-  gap: 5px;            /* reduced gap */
+  gap: 1px;            /* reduced gap */
   padding-bottom: 10px;
 }
 
