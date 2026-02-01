@@ -263,10 +263,13 @@ scrollCarousels.forEach(carousel => {
     let startX;
     let scrollLeft;
 
+    // Prevent text/image selection while dragging
+    carousel.style.userSelect = 'none';
+
     carousel.addEventListener('mousedown', (e) => {
         isDown = true;
         carousel.classList.add('active');
-        startX = e.clientX; // use clientX instead of pageX
+        startX = e.clientX;
         scrollLeft = carousel.scrollLeft;
         e.preventDefault();
     });
@@ -285,7 +288,7 @@ scrollCarousels.forEach(carousel => {
         if (!isDown) return;
         e.preventDefault();
         const x = e.clientX;
-        const walk = (x - startX) * 2; // adjust scroll speed
+        const walk = (x - startX) * 2; // scroll speed
         carousel.scrollLeft = scrollLeft - walk;
     });
 });
