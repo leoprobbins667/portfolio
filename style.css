@@ -527,9 +527,9 @@ a, button {
 }
 
 .scroll-carousel .item img {
-    height: 200px;     /* Set your desired height */
+    height: 250px;     /* Set your desired height */
     width: auto;        /* Keep the aspect ratio */
-    margin-right: 10px; /* Gap between images */
+    margin-right: 3px; /* Gap between images */
     object-fit: contain; /* Ensures the image fits nicely */
 }
 
