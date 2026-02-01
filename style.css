@@ -488,12 +488,10 @@ a, button {
 }
 
 .scroll-carousel {
-    display: flex;
     cursor: grab;
-    gap: 10px;
     overflow-x: auto;
     scroll-behavior: smooth;
-    padding-bottom: 10px;
+    user-select: none; /* prevent text/image selection */
 }
 
 .scroll-carousel.active {
