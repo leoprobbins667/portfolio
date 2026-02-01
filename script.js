@@ -265,10 +265,10 @@ scrollCarousels.forEach(carousel => {
 
     carousel.addEventListener('mousedown', (e) => {
         isDown = true;
-        carousel.classList.add('active'); // optional for styling
-        startX = e.pageX - carousel.offsetLeft;
+        carousel.classList.add('active');
+        startX = e.clientX; // use clientX instead of pageX
         scrollLeft = carousel.scrollLeft;
-        e.preventDefault(); // prevent text/image selection
+        e.preventDefault();
     });
 
     carousel.addEventListener('mouseleave', () => {
@@ -284,9 +284,8 @@ scrollCarousels.forEach(carousel => {
     carousel.addEventListener('mousemove', (e) => {
         if (!isDown) return;
         e.preventDefault();
-        const x = e.pageX - carousel.offsetLeft;
+        const x = e.clientX;
         const walk = (x - startX) * 2; // adjust scroll speed
         carousel.scrollLeft = scrollLeft - walk;
     });
 });
-
