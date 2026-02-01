@@ -490,14 +490,21 @@ a, button {
 .scroll-carousel {
     display: flex;
     overflow-x: auto;
-    gap: 1px; /* spacing between items */
-    scroll-behavior: smooth; /* optional for smooth scrolling */
-    padding-bottom: 10px; /* avoids cutting off the images */
+    gap: 6px;              /* spacing */
+    scroll-behavior: smooth;
+    padding-bottom: 10px;
 }
 
 .scroll-carousel .item {
-  flex: 0 0 auto;      
-  width: 280px;        /* increased width */
+    flex: 0 0 auto;
+    height: 220px;        /* ONE consistent height */
+}
+
+.scroll-carousel .item img {
+    height: 100%;
+    width: auto;         /* width adapts */
+    object-fit: contain; /* or cover if you want cropping */
+    border-radius: 8px;
 }
 
 .scroll-carousel img {
@@ -523,13 +530,6 @@ a, button {
     position: relative;
     overflow: hidden;
     margin-bottom: 50px;
-}
-
-.scroll-carousel .item img {
-    height: 200px;     /* Set your desired height */
-    width: auto;        /* Keep the aspect ratio */
-    margin-right: 1px; /* Gap between images */
-    object-fit: contain; /* Ensures the image fits nicely */
 }
 
 /* ==========================
