@@ -488,11 +488,12 @@ a, button {
 }
 
 .scroll-carousel {
-  display: flex;
-  flex-wrap: nowrap;        /* force single row */
-  overflow-x: auto;         /* allow horizontal scrolling */
-  scroll-behavior: smooth;  /* smooth scroll for auto-slide */
-  gap: 20px;                /* optional spacing between items */
+  display: flex;        /* horizontal row */
+  flex-wrap: nowrap;    /* prevent wrapping to next line */
+  overflow-x: auto;     /* allow horizontal scroll */
+  scroll-behavior: smooth;
+  gap: 10px;            /* space between items */
+  padding-bottom: 10px;
 }
 
 .scroll-carousel .item {
@@ -506,11 +507,11 @@ a, button {
 }
 
 .scroll-carousel img {
-    flex-shrink: 0;
-    width: 250px; /* fixed card size */
-    height: auto;
-    border-radius: 8px;
-    object-fit: cover;
+  flex: 0 0 auto;       /* keep width fixed, don’t shrink */
+  width: 250px;         /* set fixed width */
+  height: auto;
+  border-radius: 8px;
+  object-fit: cover;
 }
 
 .scroll-carousel::-webkit-scrollbar {
