@@ -232,18 +232,21 @@ document.addEventListener("DOMContentLoaded", () => {
         }, 5000);
     }
 
-    const carousels = document.querySelectorAll('.scroll-carousel');
+    // ==========================
+    // Vertical Live-Scroll Carousels
+    // ==========================
+    const verticalCarousels = document.querySelectorAll('.scroll-carousel');
 
-    carousels.forEach(carousel => {
+    verticalCarousels.forEach(carousel => {
         let isDown = false;
-        let startX;
-        let scrollLeft;
+        let startY;
+        let scrollTop;
 
         carousel.addEventListener('mousedown', (e) => {
             isDown = true;
-            carousel.classList.add('active'); // optional for styling
-            startX = e.pageX - carousel.offsetLeft;
-            scrollLeft = carousel.scrollLeft;
+            carousel.classList.add('active');
+            startY = e.pageY - carousel.offsetTop;
+            scrollTop = carousel.scrollTop;
         });
 
         carousel.addEventListener('mouseleave', () => {
@@ -257,11 +260,23 @@ document.addEventListener("DOMContentLoaded", () => {
         });
 
         carousel.addEventListener('mousemove', (e) => {
-            if(!isDown) return;
+            if (!isDown) return;
             e.preventDefault();
-            const x = e.pageX - carousel.offsetLeft;
-            const walk = (x - startX) * 2; // scroll-fast multiplier
-            carousel.scrollLeft = scrollLeft - walk;
+            const y = e.pageY - carousel.offsetTop;
+            const walk = (y - startY) * 2;
+            carousel.scrollTop = scrollTop - walk;
+        });
+
+        // Optional: enable touch dragging for mobile
+        let startTouchY, touchScrollTop;
+        carousel.addEventListener('touchstart', (e) => {
+            startTouchY = e.touches[0].pageY - carousel.offsetTop;
+            touchScrollTop = carousel.scrollTop;
+        });
+        carousel.addEventListener('touchmove', (e) => {
+            const y = e.touches[0].pageY - carousel.offsetTop;
+            const walk = (y - startTouchY) * 2;
+            carousel.scrollTop = touchScrollTop - walk;
         });
     });
-}
+});
