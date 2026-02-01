@@ -264,4 +264,4 @@ document.addEventListener("DOMContentLoaded", () => {
             carousel.scrollLeft = scrollLeft - walk;
         });
     });
-}
+});
