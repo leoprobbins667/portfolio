@@ -233,20 +233,21 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     // ==========================
-    // Vertical Live-Scroll Carousels
+    // Scrollable Carousels (Drag & Live Scroll)
     // ==========================
-    const verticalCarousels = document.querySelectorAll('.scroll-carousel');
+    const carousels = document.querySelectorAll('.scroll-carousel');
 
-    verticalCarousels.forEach(carousel => {
+    carousels.forEach(carousel => {
+        // === Drag to Scroll ===
         let isDown = false;
-        let startY;
-        let scrollTop;
+        let startX;
+        let scrollLeft;
 
         carousel.addEventListener('mousedown', (e) => {
             isDown = true;
             carousel.classList.add('active');
-            startY = e.pageY - carousel.offsetTop;
-            scrollTop = carousel.scrollTop;
+            startX = e.pageX - carousel.offsetLeft;
+            scrollLeft = carousel.scrollLeft;
         });
 
         carousel.addEventListener('mouseleave', () => {
@@ -260,23 +261,29 @@ document.addEventListener("DOMContentLoaded", () => {
         });
 
         carousel.addEventListener('mousemove', (e) => {
-            if (!isDown) return;
+            if(!isDown) return;
             e.preventDefault();
-            const y = e.pageY - carousel.offsetTop;
-            const walk = (y - startY) * 2;
-            carousel.scrollTop = scrollTop - walk;
+            const x = e.pageX - carousel.offsetLeft;
+            const walk = (x - startX) * 2; // scroll-fast multiplier
+            carousel.scrollLeft = scrollLeft - walk;
         });
 
-        // Optional: enable touch dragging for mobile
-        let startTouchY, touchScrollTop;
-        carousel.addEventListener('touchstart', (e) => {
-            startTouchY = e.touches[0].pageY - carousel.offsetTop;
-            touchScrollTop = carousel.scrollTop;
-        });
-        carousel.addEventListener('touchmove', (e) => {
-            const y = e.touches[0].pageY - carousel.offsetTop;
-            const walk = (y - startTouchY) * 2;
-            carousel.scrollTop = touchScrollTop - walk;
-        });
+        // === Live Auto Scroll on Hover ===
+        let isHovering = false;
+        const scrollSpeed = 0.8;
+
+        carousel.addEventListener('mouseenter', () => { isHovering = true; });
+        carousel.addEventListener('mouseleave', () => { isHovering = false; });
+
+        function autoScroll() {
+            if (isHovering) {
+                carousel.scrollLeft += scrollSpeed;
+                if (carousel.scrollLeft >= carousel.scrollWidth - carousel.clientWidth) {
+                    carousel.scrollLeft = 0;
+                }
+            }
+            requestAnimationFrame(autoScroll);
+        }
+        autoScroll();
     });
 });
