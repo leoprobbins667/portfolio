@@ -526,10 +526,9 @@ a, button {
 }
 
 .horizontal-gallery {
-    width: 100vw;
-    margin-left: calc(-50vw + 50%);
+    width: 100%;
+    margin-left: 0;
 }
-
 
 /* ==========================
    Project Page Header
