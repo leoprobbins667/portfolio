@@ -232,16 +232,20 @@ document.addEventListener("DOMContentLoaded", () => {
         }, 5000);
     }
 
+    // ==========================
+    // Scrollable Carousels (Drag & Live Scroll)
+    // ==========================
     const carousels = document.querySelectorAll('.scroll-carousel');
 
     carousels.forEach(carousel => {
+        // === Drag to Scroll ===
         let isDown = false;
         let startX;
         let scrollLeft;
 
         carousel.addEventListener('mousedown', (e) => {
             isDown = true;
-            carousel.classList.add('active'); // optional for styling
+            carousel.classList.add('active');
             startX = e.pageX - carousel.offsetLeft;
             scrollLeft = carousel.scrollLeft;
         });
@@ -263,5 +267,25 @@ document.addEventListener("DOMContentLoaded", () => {
             const walk = (x - startX) * 2; // scroll-fast multiplier
             carousel.scrollLeft = scrollLeft - walk;
         });
+
+        // === Live Auto Scroll on Hover ===
+        let isHovering = false;
+        const scrollSpeed = 0.8;
+
+        carousel.addEventListener('mouseenter', () => { isHovering = true; });
+        carousel.addEventListener('mouseleave', () => { isHovering = false; });
+
+        function autoScroll() {
+            if (isHovering) {
+                carousel.scrollLeft += scrollSpeed;
+                if (carousel.scrollLeft >= carousel.scrollWidth - carousel.clientWidth) {
+                    carousel.scrollLeft = 0;
+                }
+            }
+            requestAnimationFrame(autoScroll);
+        }
+        autoScroll();
+    });
+});
     });
 }
