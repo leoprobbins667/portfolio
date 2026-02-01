@@ -489,10 +489,11 @@ a, button {
 
 .scroll-carousel {
     display: flex;
-    overflow-x: auto;
-    gap: 3px; /* spacing between items */
-    scroll-behavior: smooth; /* optional for smooth scrolling */
-    padding-bottom: 10px; /* avoids cutting off the images */
+    flex-wrap: nowrap;    
+    overflow-x: auto;     
+    scroll-behavior: smooth;
+    gap: 3px;            /* reduced gap */
+    padding-bottom: 10px;
 }
 
 .scroll-carousel .item {
