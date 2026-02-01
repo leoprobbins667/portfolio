@@ -253,4 +253,40 @@ setInterval(() => {
     nextBtn.click();
 }, 5000);
 
+// ==========================
+// Click-and-drag scroll for .scroll-carousel
+// ==========================
+const scrollCarousels = document.querySelectorAll('.scroll-carousel');
+
+scrollCarousels.forEach(carousel => {
+    let isDown = false;
+    let startX;
+    let scrollLeft;
+
+    carousel.addEventListener('mousedown', (e) => {
+        isDown = true;
+        carousel.classList.add('active'); // optional for styling
+        startX = e.pageX - carousel.offsetLeft;
+        scrollLeft = carousel.scrollLeft;
+        e.preventDefault(); // prevent text/image selection
+    });
+
+    carousel.addEventListener('mouseleave', () => {
+        isDown = false;
+        carousel.classList.remove('active');
+    });
+
+    carousel.addEventListener('mouseup', () => {
+        isDown = false;
+        carousel.classList.remove('active');
+    });
+
+    carousel.addEventListener('mousemove', (e) => {
+        if (!isDown) return;
+        e.preventDefault();
+        const x = e.pageX - carousel.offsetLeft;
+        const walk = (x - startX) * 2; // adjust scroll speed
+        carousel.scrollLeft = scrollLeft - walk;
+    });
+});
 
