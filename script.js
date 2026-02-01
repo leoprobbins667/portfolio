@@ -270,7 +270,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
         // === Live Auto Scroll on Hover ===
         let isHovering = false;
-        const scrollSpeed = 0.8;
+        const scrollSpeed = 2;
 
         carousel.addEventListener('mouseenter', () => { isHovering = true; });
         carousel.addEventListener('mouseleave', () => { isHovering = false; });
