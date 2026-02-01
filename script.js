@@ -268,22 +268,28 @@ document.addEventListener("DOMContentLoaded", () => {
             carousel.scrollLeft = scrollLeft - walk;
         });
 
-        // === Live Auto Scroll on Hover ===
+        // === Live Auto Scroll on Hover with Bounce ===
         let isHovering = false;
-        const scrollSpeed = 2;
+        let scrollSpeed = 2;  // adjust speed
+        let direction = 1;     // 1 = forward, -1 = backward
 
         carousel.addEventListener('mouseenter', () => { isHovering = true; });
         carousel.addEventListener('mouseleave', () => { isHovering = false; });
 
         function autoScroll() {
             if (isHovering) {
-                carousel.scrollLeft += scrollSpeed;
+                carousel.scrollLeft += scrollSpeed * direction;
+
+                // reverse direction at edges
                 if (carousel.scrollLeft >= carousel.scrollWidth - carousel.clientWidth) {
-                    carousel.scrollLeft = 0;
+                    direction = -1;
+                } else if (carousel.scrollLeft <= 0) {
+                    direction = 1;
                 }
             }
             requestAnimationFrame(autoScroll);
         }
         autoScroll();
+
     });
 });
