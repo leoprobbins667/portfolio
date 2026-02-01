@@ -490,7 +490,7 @@ a, button {
 .scroll-carousel {
     display: flex;
     overflow-x: auto;
-    gap: 3px; /* spacing between items */
+    gap: 10px; /* spacing between items */
     scroll-behavior: smooth; /* optional for smooth scrolling */
     padding-bottom: 10px; /* avoids cutting off the images */
 }
