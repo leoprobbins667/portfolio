@@ -445,8 +445,8 @@ a, button {
 }
 
 .carousel-container img {
-    width: 100%;
-    height: auto;
+    width: auto;
+    height: 200px;
     object-fit: contain;
     flex-shrink: 0;
     border-radius: 8px;
