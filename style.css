@@ -445,8 +445,8 @@ a, button {
 }
 
 .carousel-container img {
-    width: auto;
-    height: 200px;
+    width: 100%;
+    height: auto;
     object-fit: contain;
     flex-shrink: 0;
     border-radius: 8px;
@@ -528,7 +528,7 @@ a, button {
 .scroll-carousel .item img {
     height: 200px;     /* Set your desired height */
     width: auto;        /* Keep the aspect ratio */
-    margin-right: 10px; /* Gap between images */
+    margin-right: 1px; /* Gap between images */
     object-fit: contain; /* Ensures the image fits nicely */
 }
 
