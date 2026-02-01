@@ -488,20 +488,21 @@ a, button {
 }
 
 .scroll-carousel {
-  display: flex;        /* horizontal row */
-  flex-wrap: nowrap;    /* prevent wrapping */
-  overflow-x: auto;     /* enable horizontal scroll */
-  gap: 10px;            /* spacing between items */
+  display: flex;        
+  flex-wrap: nowrap;    
+  overflow-x: auto;     
+  scroll-behavior: smooth;
+  gap: 5px;            /* reduced gap */
   padding-bottom: 10px;
 }
 
 .scroll-carousel .item {
-  flex: 0 0 auto;       /* don't shrink, maintain width */
-  width: 300px;         /* fixed width for each item */
+  flex: 0 0 auto;      
+  width: 280px;        /* increased width */
 }
 
 .scroll-carousel img {
-  width: 100%;
+  width: 100%;         
   height: auto;
   border-radius: 8px;
   object-fit: cover;
