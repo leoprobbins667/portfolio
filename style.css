@@ -489,29 +489,26 @@ a, button {
 
 .scroll-carousel {
   display: flex;        /* horizontal row */
-  flex-wrap: nowrap;    /* prevent wrapping to next line */
-  overflow-x: auto;     /* allow horizontal scroll */
-  scroll-behavior: smooth;
-  gap: 10px;            /* space between items */
+  flex-wrap: nowrap;    /* prevent wrapping */
+  overflow-x: auto;     /* enable horizontal scroll */
+  gap: 10px;            /* spacing between items */
   padding-bottom: 10px;
 }
 
 .scroll-carousel .item {
-  flex: 0 0 auto;           /* don't shrink, maintain width */
-  width: 300px;             /* set your desired item width */
-}
-
-
-.scroll-carousel.active {
-    cursor: grabbing;
+  flex: 0 0 auto;       /* don't shrink, maintain width */
+  width: 300px;         /* fixed width for each item */
 }
 
 .scroll-carousel img {
-  flex: 0 0 auto;       /* keep width fixed, don’t shrink */
-  width: 250px;         /* set fixed width */
+  width: 100%;
   height: auto;
   border-radius: 8px;
   object-fit: cover;
+}
+
+.scroll-carousel.active {
+    cursor: grabbing;
 }
 
 .scroll-carousel::-webkit-scrollbar {
