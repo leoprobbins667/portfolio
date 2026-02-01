@@ -527,12 +527,11 @@ a, button {
 }
 
 .scroll-carousel .item img {
-    width: 250;        /* smaller width */
-    height: auto;
-    border-radius: 2px;
-    object-fit: cover;
+    height: 200px;     /* Set your desired height */
+    width: auto;        /* Keep the aspect ratio */
+    margin-right: 10px; /* Gap between images */
+    object-fit: contain; /* Ensures the image fits nicely */
 }
-
 
 /* ==========================
    Project Page Header
