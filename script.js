@@ -63,12 +63,14 @@ document.addEventListener("DOMContentLoaded", () => {
             trailElements.push({ el: dot, x: mouseX, y: mouseY });
         }
 
+        // Hide cursor on inputs/textareas/selects
         const hideTargets = document.querySelectorAll('input, textarea, select');
         hideTargets.forEach(el => {
             el.addEventListener('mouseenter', () => { customCursor.style.display = 'none'; });
             el.addEventListener('mouseleave', () => { customCursor.style.display = 'block'; });
         });
 
+        // Caret hover targets (text elements)
         const caretTargets = document.querySelectorAll('h1, h2, h3, h4, p, li');
         caretTargets.forEach(el => {
             el.addEventListener('mouseenter', () => {
@@ -81,6 +83,7 @@ document.addEventListener("DOMContentLoaded", () => {
             });
         });
 
+        // Button/interactive hover targets
         const buttonTargets = document.querySelectorAll(
             'button, .header-right a, .project-item, .header-left'
         );
@@ -111,6 +114,7 @@ document.addEventListener("DOMContentLoaded", () => {
             const speedMag = Math.min(Math.sqrt(dx*dx + dy*dy), 250);
             const angle = Math.atan2(dy, dx);
 
+            // Normal cursor trail
             if (!customCursor.classList.contains('caret') && !customCursor.classList.contains('button-hover')) {
                 trailElements.forEach((trail, index) => {
                     const prev = index === 0 ? { x: cursorX, y: cursorY } : trailElements[index - 1];
@@ -142,6 +146,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 }
             }
 
+            // Caret for text
             if (customCursor.classList.contains('caret') && customCursor._targetElement) {
                 const fontSize = parseFloat(window.getComputedStyle(customCursor._targetElement).fontSize);
                 customCursor.style.width = "2px";
@@ -151,6 +156,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 customCursor.style.boxShadow = "0 0 10px rgba(30, 144, 255, 1)";
             }
 
+            // Button hover square
             if (customCursor.classList.contains('button-hover')) {
                 const size = customCursor._targetElement && customCursor._targetElement.classList.contains('project-item') ? 0 : 10;
                 if (customCursor._hoverX !== undefined && customCursor._hoverY !== undefined) {
@@ -196,7 +202,38 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
     // ==========================
-    // Scroll Carousel with Drag & Auto-Slide
+    // Auto-Slide Carousel
+    // ==========================
+    const carouselContainer = document.querySelector(".carousel-container");
+    const prevBtn = document.querySelector(".carousel-prev");
+    const nextBtn = document.querySelector(".carousel-next");
+    let carouselIndex = 0;
+
+    if (carouselContainer && prevBtn && nextBtn) {
+        function updateCarousel() {
+            const width = carouselContainer.clientWidth;
+            carouselContainer.style.transform = `translateX(-${carouselIndex * width}px)`;
+        }
+
+        nextBtn.addEventListener("click", () => {
+            if (carouselIndex < carouselContainer.children.length - 1) carouselIndex++;
+            else carouselIndex = 0;
+            updateCarousel();
+        });
+
+        prevBtn.addEventListener("click", () => {
+            if (carouselIndex > 0) carouselIndex--;
+            else carouselIndex = carouselContainer.children.length - 1;
+            updateCarousel();
+        });
+
+        setInterval(() => {
+            nextBtn.click();
+        }, 5000);
+    }
+
+    // ==========================
+    // Click-and-Drag Scroll for .scroll-carousel
     // ==========================
     const scrollCarousels = document.querySelectorAll('.scroll-carousel');
 
@@ -229,19 +266,8 @@ document.addEventListener("DOMContentLoaded", () => {
             if (!isDown) return;
             e.preventDefault();
             const x = e.clientX;
-            const walk = (x - startX) * 2; // scroll speed
+            const walk = (x - startX) * 2;
             carousel.scrollLeft = scrollLeft - walk;
         });
-
-        // Auto-slide
-        setInterval(() => {
-            const maxScroll = carousel.scrollWidth - carousel.clientWidth;
-            if (carousel.scrollLeft >= maxScroll) {
-                carousel.scrollTo({ left: 0, behavior: 'smooth' });
-            } else {
-                carousel.scrollBy({ left: carousel.clientWidth, behavior: 'smooth' });
-            }
-        }, 5000);
     });
 });
-
