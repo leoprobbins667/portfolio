@@ -232,24 +232,18 @@ document.addEventListener("DOMContentLoaded", () => {
         }, 5000);
     }
 
-    // ==========================
-    // Click-and-Drag Scroll for .scroll-carousel
-    // ==========================
-    const scrollCarousels = document.querySelectorAll('.scroll-carousel');
+    const carousels = document.querySelectorAll('.scroll-carousel');
 
-    scrollCarousels.forEach(carousel => {
+    carousels.forEach(carousel => {
         let isDown = false;
         let startX;
         let scrollLeft;
 
-        carousel.style.userSelect = 'none';
-
         carousel.addEventListener('mousedown', (e) => {
             isDown = true;
-            carousel.classList.add('active');
-            startX = e.clientX;
+            carousel.classList.add('active'); // optional for styling
+            startX = e.pageX - carousel.offsetLeft;
             scrollLeft = carousel.scrollLeft;
-            e.preventDefault();
         });
 
         carousel.addEventListener('mouseleave', () => {
@@ -263,11 +257,11 @@ document.addEventListener("DOMContentLoaded", () => {
         });
 
         carousel.addEventListener('mousemove', (e) => {
-            if (!isDown) return;
+            if(!isDown) return;
             e.preventDefault();
-            const x = e.clientX;
-            const walk = (x - startX) * 2;
+            const x = e.pageX - carousel.offsetLeft;
+            const walk = (x - startX) * 2; // scroll-fast multiplier
             carousel.scrollLeft = scrollLeft - walk;
         });
     });
-});
+}
