@@ -282,13 +282,13 @@ body {
 
 #custom-cursor {
     position: fixed;
-    width: 50px;
-    height: 50px;
+    width: 16px;
+    height: 16px;
     background-color: rgba(30, 144, 255, 0.2);
     border-radius: 50%;
     pointer-events: none;
-    z-index: 100000;
-    transition: all 0.15s ease;
+    z-index: 2147483647;
+    transition: transform 0.15s ease, width 0.15s ease, height 0.15s ease, background-color 0.15s ease, box-shadow 0.15s ease, opacity 0.15s ease;
 }
 
 #custom-cursor.caret {
@@ -315,23 +315,417 @@ body {
     transition: width 0.2s, height 0.2s, background-color 0.2s, box-shadow 0.2s;
 }
 
+/* Magnifying glass on image hover */
+#custom-cursor.image-hover {
+    width: 20px;
+    height: 20px;
+    background: rgba(0, 0, 0, 0.25);
+    border: 2px solid rgba(30, 144, 255, 0.9);
+    box-shadow: 0 0 14px rgba(30, 144, 255, 0.8);
+    border-radius: 50%;
+}
 
+#custom-cursor.image-hover::after {
+    content: "";
+    position: absolute;
+    width: 10px;
+    height: 2px;
+    background: rgba(30, 144, 255, 0.9);
+    border-radius: 2px;
+    right: -6px;
+    bottom: -2px;
+    transform: rotate(45deg);
+    box-shadow: 0 0 8px rgba(30, 144, 255, 0.8);
+}
+
+/* Target cursor for Tap the Dot */
+#custom-cursor.target-hover {
+    width: 14px;
+    height: 14px;
+    background: transparent;
+    border: 1px solid rgba(30, 144, 255, 0.9);
+    box-shadow: 0 0 10px rgba(30, 144, 255, 0.8);
+    border-radius: 50%;
+}
+
+#custom-cursor.target-hover::before,
+#custom-cursor.target-hover::after {
+    content: "";
+    position: absolute;
+    background: rgba(30, 144, 255, 0.9);
+    box-shadow: 0 0 8px rgba(30, 144, 255, 0.8);
+}
+
+#custom-cursor.target-hover::before {
+    width: 2px;
+    height: 12px;
+    left: 50%;
+    top: 1px;
+    transform: translateX(-50%);
+}
+
+#custom-cursor.target-hover::after {
+    width: 12px;
+    height: 2px;
+    left: 1px;
+    top: 50%;
+    transform: translateY(-50%);
+}
 a, button {
     cursor: none !important;
 }
 
 .cursor-trail {
     position: fixed;
-    width: 8px;
-    height: 8px;
-    background: rgba(30, 144, 255, 0.25);
+    width: 7px;
+    height: 7px;
+    background: rgba(30, 144, 255, 0.35);
     border-radius: 50%;
     pointer-events: none;
     z-index: 2147483646;
     transition: opacity 0.3s ease;
 }
 
+/* ==========================
+   Image Lightbox
+========================== */
+.image-lightbox {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.85);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.2s ease;
+    z-index: 2147483645;
+}
 
+.image-lightbox.open {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.image-lightbox img {
+    max-width: 90vw;
+    max-height: 90vh;
+    object-fit: contain;
+    border-radius: 10px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.6);
+}
+
+.image-lightbox video {
+    max-width: 90vw;
+    max-height: 90vh;
+    width: auto;
+    height: auto;
+    object-fit: contain;
+    border-radius: 10px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.6);
+    background: #000;
+}
+
+/* ==========================
+   Snake Game
+========================== */
+#snake-game {
+    margin-top: 60px;
+    font-family: 'Fira Mono', monospace;
+    position: relative;
+}
+
+#tap-game {
+    margin-top: 60px;
+    font-family: 'Fira Mono', monospace;
+    position: relative;
+}
+.snake-wrap {
+    margin-top: 16px;
+    display: flex;
+    align-items: center;
+    gap: 24px;
+    flex-wrap: wrap;
+    position: relative;
+}
+
+.snake-side {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    min-width: 200px;
+    margin-left: auto;
+}
+
+#snake-canvas {
+    width: 360px;
+    height: 360px;
+    max-width: 90vw;
+    max-height: 90vw;
+    background: #0b0b0b;
+    border: 1px solid #1e90ff;
+    border-radius: 10px;
+    box-shadow: 0 0 18px rgba(30, 144, 255, 0.3);
+}
+
+.snake-ui {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.snake-ui button {
+    padding: 10px 16px;
+    background-color: #1e90ff;
+    border: none;
+    border-radius: 6px;
+    color: #fff;
+    font-family: 'Fira Mono', monospace;
+    font-size: 0.95rem;
+    cursor: pointer;
+}
+
+.snake-ui button:hover {
+    background-color: #0d6fb8;
+}
+
+#snake-score {
+    margin-top: 8px;
+    color: #fff;
+    font-size: 0.95rem;
+}
+
+.snake-leaderboard {
+    margin-top: 10px;
+    padding: 10px 12px;
+    border: 1px solid #1e90ff;
+    border-radius: 8px;
+    background: #0b0b0b;
+}
+
+.snake-leaderboard-title {
+    font-size: 0.9rem;
+    margin-bottom: 6px;
+    color: #fff;
+}
+
+#snake-highscores {
+    margin: 0;
+    padding-left: 18px;
+    color: #fff;
+    font-size: 0.9rem;
+}
+
+.snake-name-label {
+    display: block;
+    margin: 10px 0 6px;
+    font-size: 0.9rem;
+}
+
+#snake-name {
+    width: 100%;
+    padding: 8px 10px;
+    border-radius: 6px;
+    border: 1px solid #555;
+    background-color: #111;
+    color: #fff;
+    font-family: 'Fira Mono', monospace;
+    font-size: 0.95rem;
+}
+
+.tap-wrap {
+    margin-top: 16px;
+    display: flex;
+    align-items: center;
+    gap: 24px;
+    flex-wrap: wrap;
+    position: relative;
+}
+
+.tap-side {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    min-width: 220px;
+    margin-left: auto;
+}
+
+#tap-canvas {
+    width: 360px;
+    height: 240px;
+    max-width: 90vw;
+    max-height: 60vw;
+    background: #0b0b0b;
+    border: 1px solid #1e90ff;
+    border-radius: 10px;
+    box-shadow: 0 0 18px rgba(30, 144, 255, 0.3);
+}
+
+.tap-ui {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.tap-ui button {
+    padding: 10px 16px;
+    background-color: #1e90ff;
+    border: none;
+    border-radius: 6px;
+    color: #fff;
+    font-family: 'Fira Mono', monospace;
+    font-size: 0.95rem;
+    cursor: pointer;
+}
+
+.tap-ui button:hover {
+    background-color: #0d6fb8;
+}
+
+#tap-score,
+#tap-time {
+    margin-top: 6px;
+    color: #fff;
+    font-size: 0.95rem;
+}
+
+.tap-leaderboard {
+    margin-top: 10px;
+    padding: 10px 12px;
+    border: 1px solid #1e90ff;
+    border-radius: 8px;
+    background: #0b0b0b;
+}
+
+.tap-leaderboard-title {
+    font-size: 0.9rem;
+    margin-bottom: 6px;
+    color: #fff;
+}
+
+#tap-highscores {
+    margin: 0;
+    padding-left: 18px;
+    color: #fff;
+    font-size: 0.9rem;
+}
+
+.score-status {
+    margin-top: 6px;
+    font-size: 0.8rem;
+    color: #7aa7ff;
+    min-height: 1em;
+}
+
+.tap-over {
+    position: absolute;
+    inset: 0;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    background: rgba(0, 0, 0, 0.7);
+    z-index: 5;
+}
+
+.tap-over.open {
+    display: flex;
+}
+
+.tap-over-card {
+    background: #0f0f0f;
+    border: 1px solid #1e90ff;
+    border-radius: 10px;
+    padding: 22px 24px;
+    text-align: center;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.6);
+}
+
+.tap-name-label {
+    display: block;
+    margin: 10px 0 6px;
+    font-size: 0.9rem;
+}
+
+#tap-name {
+    width: 100%;
+    padding: 8px 10px;
+    border-radius: 6px;
+    border: 1px solid #555;
+    background-color: #111;
+    color: #fff;
+    font-family: 'Fira Mono', monospace;
+    font-size: 0.95rem;
+}
+
+.tap-over-actions {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    margin-top: 12px;
+    flex-wrap: wrap;
+}
+
+.tap-over-actions button {
+    padding: 10px 14px;
+    background-color: #1e90ff;
+    border: none;
+    border-radius: 6px;
+    color: #fff;
+    font-family: 'Fira Mono', monospace;
+    font-size: 0.9rem;
+    cursor: pointer;
+}
+
+.tap-over-actions button:hover {
+    background-color: #0d6fb8;
+}
+
+.snake-over {
+    position: absolute;
+    inset: 0;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    background: rgba(0, 0, 0, 0.7);
+    z-index: 5;
+}
+
+.snake-over.open {
+    display: flex;
+}
+
+.snake-over-card {
+    background: #0f0f0f;
+    border: 1px solid #1e90ff;
+    border-radius: 10px;
+    padding: 24px 28px;
+    text-align: center;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.6);
+}
+
+.snake-over-card h3 {
+    margin: 0 0 8px 0;
+    font-family: 'Fira Mono', monospace;
+}
+
+.snake-over-card p {
+    margin: 0 0 16px 0;
+}
+
+.snake-over-card button {
+    padding: 10px 16px;
+    background-color: #1e90ff;
+    border: none;
+    border-radius: 6px;
+    color: #fff;
+    font-family: 'Fira Mono', monospace;
+    font-size: 0.95rem;
+    cursor: pointer;
+}
+
+.snake-over-card button:hover {
+    background-color: #0d6fb8;
+}
 /* ==========================
    Section Divider
 ========================== */
@@ -444,10 +838,14 @@ a, button {
 }
 
 .carousel-container img {
+<<<<<<< Updated upstream
     width: auto;
+=======
+    width: 100%;
+>>>>>>> Stashed changes
     height: 380px;
     object-fit: contain;
-    flex-shrink: 0;
+    flex: 0 0 100%;
     border-radius: 8px;
 }
 
@@ -663,9 +1061,11 @@ a, button {
     background-color: #0f0f0f;
     display: flex;
     align-items: center;
+    justify-content: space-between;
     padding: 0 30px;
     z-index: 9999;
     border-bottom: 1px solid #222;
+    box-sizing: border-box;
 }
 
 .top-header .logo {
@@ -676,17 +1076,24 @@ a, button {
 .top-header .header-right {
     display: flex;
     align-items: center;
-    margin-left: 1050px;
+    justify-content: flex-end;
+    text-align: left;
+    gap: 28px;
+    margin-left: auto;
+    flex: 1;
+    flex-wrap: wrap;
+    min-width: 0;
 }
 
 /* spacing between individual links */
 .top-header .header-right a {
     color: #fff;
     text-decoration: none;
-    margin-left: 30px;
+    margin-left: 0;
     font-family: 'Fira Mono', monospace;
     font-weight: 400;
     transition: color 0.3s;
+    white-space: nowrap;
 }
 
 .top-header .header-right a:hover {
@@ -695,6 +1102,95 @@ a, button {
 
 body main {
     padding-top: 90px;
+}
+
+/* ==========================
+   Mobile & Responsive
+========================== */
+@media (max-width: 900px) {
+    main {
+        padding: 30px 20px;
+    }
+
+    header h1 {
+        font-size: 2.6rem;
+        line-height: 3.2rem;
+        height: auto;
+    }
+
+    header h2 {
+        font-size: 1.1rem;
+    }
+
+    header h3 {
+        font-size: 1.5rem;
+    }
+
+    .top-header {
+        height: auto;
+        padding: 12px 16px;
+        flex-wrap: wrap;
+        gap: 8px;
+    }
+
+    .top-header .header-right {
+        width: 100%;
+        margin-left: 0;
+        flex-wrap: wrap;
+        gap: 12px;
+    }
+
+    .top-header .header-right a {
+        margin-left: 0;
+        font-size: 0.95rem;
+    }
+
+    .projects-flex,
+    .background-container,
+    .about-flex {
+        flex-direction: column;
+        gap: 24px;
+    }
+
+    .projects-video,
+    .resonance-video,
+    .projects-video-hokie,
+    .projects-carousel {
+        max-width: 100%;
+        width: 100%;
+        margin-left: 0;
+    }
+
+    .resonance-video-container,
+    .poster-image {
+        margin-left: 0;
+    }
+
+    .carousel-container img {
+        height: auto;
+    }
+
+    .scroll-carousel .item {
+        height: 260px;
+    }
+
+    .photo-row {
+        flex-direction: column;
+    }
+
+    .photo-row img {
+        width: 100%;
+    }
+}
+
+@media (pointer: coarse) {
+    body {
+        cursor: auto;
+    }
+    #custom-cursor,
+    .cursor-trail {
+        display: none;
+    }
 }
 
 body.home-page .top-header {

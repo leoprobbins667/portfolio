@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Leo Robbins | Games</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/png" href="ProjectImages/SimpleLogo.png">
+</head>
+<body>
+<div id="custom-cursor"></div>
+
+<!-- TOP HEADER NAV -->
+<header class="top-header">
+    <div class="header-left">
+        <a href="index.html">
+            <img src="ProjectImages/SimpleLogo.png" alt="Logo" class="logo">
+        </a>
+    </div>
+    <nav class="header-right">
+        <a href="index.html">Home</a>
+        <a href="about.html">About</a>
+        <a href="games.html">Games</a>
+        <a href="contact.html">Contact Me</a>
+    </nav>
+</header>
+
+<!-- MAIN CONTENT -->
+<main id="games">
+    <div class="grid-container">
+        <header>
+            <h1>Games</h1>
+        </header>
+        <section>
+            <header>
+                <h2>This is a small page I made to store fun and simple games. Feel free to scroll
+                    through them and enjoy while you're bored!
+                </h2>
+            </header>
+        </section>
+
+        <section id="snake-game">
+            <header>
+                <h3>Snake (Prototype)</h3>
+                <h4>Use arrow keys or WASD. Tap to start on mobile.</h4>
+            </header>
+            <div class="snake-wrap">
+                <canvas id="snake-canvas" width="360" height="360" aria-label="Snake game"></canvas>
+                <div class="snake-ui">
+                    <button id="snake-start" type="button">Start</button>
+                    <button id="snake-reset" type="button">Reset</button>
+                    <button id="snake-sound" type="button">Sound: On</button>
+                    <div id="snake-score">Score: 0</div>
+                </div>
+                <div class="snake-side">
+                    <div class="snake-leaderboard">
+                        <div class="snake-leaderboard-title">High Scores</div>
+                        <ol id="snake-highscores"></ol>
+                        <div id="snake-status" class="score-status"></div>
+                    </div>
+                </div>
+            </div>
+            <div id="snake-over" class="snake-over">
+                <div class="snake-over-card">
+                    <h3>Game Over</h3>
+                    <p id="snake-final">Score: 0</p>
+                    <label class="snake-name-label" for="snake-name">Name (optional)</label>
+                    <input id="snake-name" type="text" maxlength="16" placeholder="Your name">
+                    <button id="snake-restart" type="button">Play Again</button>
+                    <button id="snake-save" type="button">Save Score</button>
+                    <button id="snake-quit" type="button">Quit</button>
+                </div>
+            </div>
+        </section>
+
+        <section id="tap-game">
+            <header>
+                <h3>Tap the Dot</h3>
+                <h4>Click or tap the target before it moves.</h4>
+            </header>
+            <div class="tap-wrap">
+                <canvas id="tap-canvas" width="360" height="240" aria-label="Tap the Dot game"></canvas>
+                <div class="tap-ui">
+                    <button id="tap-start" type="button">Start</button>
+                    <button id="tap-reset" type="button">Reset</button>
+                    <div id="tap-score">Score: 0</div>
+                    <div id="tap-time">Time: 30</div>
+                </div>
+                <div class="tap-side">
+                    <div class="tap-leaderboard">
+                        <div class="tap-leaderboard-title">High Scores</div>
+                        <ol id="tap-highscores"></ol>
+                        <div id="tap-status" class="score-status"></div>
+                    </div>
+                </div>
+            </div>
+            <div id="tap-over" class="tap-over">
+                <div class="tap-over-card">
+                    <h3>Time’s Up</h3>
+                    <p id="tap-final">Score: 0</p>
+                    <label class="tap-name-label" for="tap-name">Name (optional)</label>
+                    <input id="tap-name" type="text" maxlength="16" placeholder="Your name">
+                    <div class="tap-over-actions">
+                        <button id="tap-save" type="button">Save Score</button>
+                        <button id="tap-restart" type="button">Play Again</button>
+                        <button id="tap-quit" type="button">Quit</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <footer>
+            <p>© 2026 Leo Robbins. All rights reserved.</p>
+        </footer>
+    </div>
+</main>
+
+<script src="script.js"></script>
+</body>
+</html>
