@@ -46,25 +46,15 @@ document.addEventListener("DOMContentLoaded", () => {
     if (customCursor) {
         let mouseX = 0, mouseY = 0;
         let cursorX = 0, cursorY = 0;
-<<<<<<< Updated upstream
-        const speed = 0.15;
-=======
         const baseSpeed = 0.22;
         let cursorSpeed = baseSpeed;
->>>>>>> Stashed changes
 
         document.addEventListener("mousemove", (e) => {
             mouseX = e.clientX;
             mouseY = e.clientY;
         });
-<<<<<<< Updated upstream
-
-        // Trail elements
-        const trailCount = 40;
-=======
         // Trail elements
         const trailCount = 48;
->>>>>>> Stashed changes
         const trailElements = [];
         for (let i = 0; i < trailCount; i++) {
             const dot = document.createElement("div");
@@ -95,43 +85,20 @@ document.addEventListener("DOMContentLoaded", () => {
 
         // Button/interactive hover targets
         const buttonTargets = document.querySelectorAll(
-<<<<<<< Updated upstream
-            'button, .header-right a, .project-item, .header-left'
-=======
             'button, .header-right a, .header-left'
->>>>>>> Stashed changes
         );
         buttonTargets.forEach(el => {
             el.addEventListener('mouseenter', () => {
                 customCursor.classList.add('button-hover');
                 customCursor.classList.remove('caret');
-<<<<<<< Updated upstream
-                customCursor._targetElement = el;
-                customCursor._hoverX = cursorX;
-                customCursor._hoverY = cursorY;
-=======
                 customCursor.classList.remove('image-hover');
                 customCursor._targetElement = el;
                 customCursor._hoverW = customCursor.offsetWidth;
                 customCursor._hoverH = customCursor.offsetHeight;
->>>>>>> Stashed changes
             });
             el.addEventListener('mouseleave', () => {
                 customCursor.classList.remove('button-hover');
                 customCursor._targetElement = null;
-<<<<<<< Updated upstream
-                customCursor._hoverX = undefined;
-                customCursor._hoverY = undefined;
-            });
-        });
-
-        function animateCursor() {
-            cursorX += (mouseX - cursorX) * speed;
-            cursorY += (mouseY - cursorY) * speed;
-
-            customCursor.style.transform = `translate3d(${cursorX - customCursor.offsetWidth / 2}px, ${cursorY - customCursor.offsetHeight / 2}px, 0)`;
-
-=======
                 customCursor.style.opacity = "1";
                 customCursor._hoverW = undefined;
                 customCursor._hoverH = undefined;
@@ -181,7 +148,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
             customCursor.style.transform = `translate3d(${cursorX - customCursor.offsetWidth / 2}px, ${cursorY - customCursor.offsetHeight / 2}px, 0)`;
 
->>>>>>> Stashed changes
             const dx = mouseX - (customCursor._lastX || mouseX);
             const dy = mouseY - (customCursor._lastY || mouseY);
             const speedMag = Math.min(Math.sqrt(dx*dx + dy*dy), 250);
@@ -189,12 +155,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
             // Normal cursor trail
             if (!customCursor.classList.contains('caret') && !customCursor.classList.contains('button-hover')) {
-<<<<<<< Updated upstream
-                trailElements.forEach((trail, index) => {
-                    const prev = index === 0 ? { x: cursorX, y: cursorY } : trailElements[index - 1];
-                    trail.x += (prev.x - trail.x) * 0.05;
-                    trail.y += (prev.y - trail.y) * 0.05;
-=======
                 if (customCursor.classList.contains('target-hover')) {
                     customCursor.style.width = "14px";
                     customCursor.style.height = "14px";
@@ -210,7 +170,6 @@ document.addEventListener("DOMContentLoaded", () => {
                     const prev = index === 0 ? { x: cursorX, y: cursorY } : trailElements[index - 1];
                     trail.x += (prev.x - trail.x) * 0.09;
                     trail.y += (prev.y - trail.y) * 0.09;
->>>>>>> Stashed changes
                     const taper = 1 - index / trailCount;
                     const length = 15 * taper + speedMag * 0.6 * taper;
                     const width = 6 * taper;
@@ -249,21 +208,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
             // Button hover square
             if (customCursor.classList.contains('button-hover')) {
-<<<<<<< Updated upstream
-                const size = customCursor._targetElement && customCursor._targetElement.classList.contains('project-item') ? 0 : 10;
-                if (customCursor._hoverX !== undefined && customCursor._hoverY !== undefined) {
-                    customCursor._hoverX += (cursorX - customCursor._hoverX) * speed;
-                    customCursor._hoverY += (cursorY - customCursor._hoverY) * speed;
-                }
-                const currentWidth = parseFloat(customCursor.style.width) || 0;
-                const currentHeight = parseFloat(customCursor.style.height) || 0;
-                customCursor.style.width = `${currentWidth + (size - currentWidth) * speed}px`;
-                customCursor.style.height = `${currentHeight + (size - currentHeight) * speed}px`;
-                customCursor.style.transform = `translate3d(${customCursor._hoverX - size/2}px, ${customCursor._hoverY - size/2}px, 0)`;
-                customCursor.style.borderRadius = "4px";
-                customCursor.style.backgroundColor = "rgba(30, 144, 255, 0.9)";
-                customCursor.style.boxShadow = size === 0 ? "none" : "0 0 10px rgba(30, 144, 255, 0.8)";
-=======
                 const target = customCursor._targetElement;
                 if (target) {
                     const rect = target.getBoundingClientRect();
@@ -292,7 +236,6 @@ document.addEventListener("DOMContentLoaded", () => {
                     customCursor.style.backgroundColor = "rgba(30, 144, 255, 0.15)";
                     customCursor.style.boxShadow = "0 0 10px rgba(30, 144, 255, 0.6)";
                 }
->>>>>>> Stashed changes
             }
 
             customCursor._lastX = cursorX;
@@ -360,61 +303,6 @@ document.addEventListener("DOMContentLoaded", () => {
     const carousels = document.querySelectorAll('.scroll-carousel');
 
     carousels.forEach(carousel => {
-<<<<<<< Updated upstream
-        // === Drag to Scroll ===
-        let isDown = false;
-        let startX;
-        let scrollLeft;
-
-        carousel.addEventListener('mousedown', (e) => {
-            isDown = true;
-            carousel.classList.add('active');
-            startX = e.pageX - carousel.offsetLeft;
-            scrollLeft = carousel.scrollLeft;
-        });
-
-        carousel.addEventListener('mouseleave', () => {
-            isDown = false;
-            carousel.classList.remove('active');
-        });
-
-        carousel.addEventListener('mouseup', () => {
-            isDown = false;
-            carousel.classList.remove('active');
-        });
-
-        carousel.addEventListener('mousemove', (e) => {
-            if(!isDown) return;
-            e.preventDefault();
-            const x = e.pageX - carousel.offsetLeft;
-            const walk = (x - startX) * 2; // scroll-fast multiplier
-            carousel.scrollLeft = scrollLeft - walk;
-        });
-
-        // === Live Auto Scroll on Hover with Bounce ===
-        let isHovering = false;
-        let scrollSpeed = 2;  // adjust speed
-        let direction = 1;     // 1 = forward, -1 = backward
-
-        carousel.addEventListener('mouseenter', () => { isHovering = true; });
-        carousel.addEventListener('mouseleave', () => { isHovering = false; });
-
-        function autoScroll() {
-            if (isHovering) {
-                carousel.scrollLeft += scrollSpeed * direction;
-
-                // reverse direction at edges
-                if (carousel.scrollLeft >= carousel.scrollWidth - carousel.clientWidth) {
-                    direction = -1;
-                } else if (carousel.scrollLeft <= 0) {
-                    direction = 1;
-                }
-            }
-            requestAnimationFrame(autoScroll);
-        }
-        autoScroll();
-
-=======
         // === Live Auto Scroll on Hover with Bounce ===
         let isHovering = false;
         let direction = 1; // 1 = forward, -1 = backward
@@ -546,7 +434,6 @@ document.addEventListener("DOMContentLoaded", () => {
             if (e.target.closest('.logo')) return;
             openLightbox(img);
         });
->>>>>>> Stashed changes
     });
 
     document.querySelectorAll('video').forEach(video => {
