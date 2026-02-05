@@ -666,13 +666,13 @@ a, button {
 }
 
 .tap-over-actions button {
-    padding: 10px 14px;
+    padding: 10px 16px;
     background-color: #1e90ff;
     border: none;
     border-radius: 6px;
     color: #fff;
     font-family: 'Fira Mono', monospace;
-    font-size: 0.9rem;
+    font-size: 0.95rem;
     cursor: pointer;
 }
 
