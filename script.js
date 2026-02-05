@@ -1,4 +1,14 @@
 document.addEventListener("DOMContentLoaded", () => {
+    let touchModeEnabled = false;
+    function enableTouchMode() {
+        if (touchModeEnabled) return;
+        touchModeEnabled = true;
+        document.body.classList.add('touch-mode');
+        const cc = document.getElementById('custom-cursor');
+        if (cc) cc.style.display = 'none';
+        document.querySelectorAll('.cursor-trail').forEach(el => el.remove());
+    }
+    window.addEventListener('touchstart', enableTouchMode, { passive: true, once: true });
     // ==========================
     // Video Player & Header Phrase Changer
     // ==========================
@@ -48,6 +58,10 @@ document.addEventListener("DOMContentLoaded", () => {
         let cursorX = 0, cursorY = 0;
         const baseSpeed = 0.22;
         let cursorSpeed = baseSpeed;
+        if ('ontouchstart' in window || navigator.maxTouchPoints > 0) {
+            enableTouchMode();
+            return;
+        }
 
         document.addEventListener("mousemove", (e) => {
             mouseX = e.clientX;
