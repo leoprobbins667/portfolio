@@ -33,7 +33,11 @@ document.addEventListener("DOMContentLoaded", () => {
 
             video.addEventListener("ended", () => {
                 document.body.style.overflow = "auto";
-                home.scrollIntoView({ behavior: "smooth" });
+                try {
+                    home.scrollIntoView({ behavior: "smooth" });
+                } catch {
+                    window.scrollTo(0, home.offsetTop);
+                }
                 setTimeout(() => {
                     video.remove();
                     window.scrollTo(0, home.offsetTop);
@@ -47,6 +51,10 @@ document.addEventListener("DOMContentLoaded", () => {
                 sessionStorage.setItem("videoPlayed", "true");
             });
         }
+    }
+
+    if (!video) {
+        document.body.style.overflow = "auto";
     }
 
     // ==========================
