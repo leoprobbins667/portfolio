@@ -838,11 +838,7 @@ a, button {
 }
 
 .carousel-container img {
-<<<<<<< Updated upstream
-    width: auto;
-=======
     width: 100%;
->>>>>>> Stashed changes
     height: 380px;
     object-fit: contain;
     flex: 0 0 100%;
