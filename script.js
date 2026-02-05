@@ -538,6 +538,7 @@ document.addEventListener("DOMContentLoaded", () => {
             placeFood();
             draw();
             if (overEl) overEl.classList.remove('open');
+            document.body.classList.remove('game-lock');
         }
 
         async function fetchHighscores() {
@@ -590,11 +591,15 @@ document.addEventListener("DOMContentLoaded", () => {
             if (running) return;
             running = true;
             lastTime = 0;
+            if ('ontouchstart' in window || navigator.maxTouchPoints > 0) {
+                document.body.classList.add('game-lock');
+            }
             requestAnimationFrame(loop);
         }
 
         function stopGame() {
             running = false;
+            document.body.classList.remove('game-lock');
             if (overEl) {
                 finalEl.textContent = `Score: ${score}`;
                 overEl.classList.add('open');
@@ -721,7 +726,10 @@ document.addEventListener("DOMContentLoaded", () => {
             }
             touchStartX = t.clientX;
             touchStartY = t.clientY;
-        }, { passive: true });
+            if ('ontouchstart' in window || navigator.maxTouchPoints > 0) {
+                e.preventDefault();
+            }
+        }, { passive: false });
 
         renderHighscores().catch(() => {
             if (statusEl) statusEl.textContent = 'Unable to load scores.';
@@ -838,6 +846,9 @@ document.addEventListener("DOMContentLoaded", () => {
                 updateTapUI();
                 if (timeLeft <= 0) stopTap();
             }, 1000);
+            if ('ontouchstart' in window || navigator.maxTouchPoints > 0) {
+                document.body.classList.add('game-lock');
+            }
         }
 
         function stopTap() {
@@ -846,6 +857,7 @@ document.addEventListener("DOMContentLoaded", () => {
             if (countdownTimer) clearInterval(countdownTimer);
             moveTimer = null;
             countdownTimer = null;
+            document.body.classList.remove('game-lock');
             if (tapOverEl) {
                 tapFinalEl.textContent = `Score: ${tapScore}`;
                 tapOverEl.classList.add('open');
@@ -859,6 +871,7 @@ document.addEventListener("DOMContentLoaded", () => {
             updateTapUI();
             randomizeTarget();
             if (tapOverEl) tapOverEl.classList.remove('open');
+            document.body.classList.remove('game-lock');
         }
 
         function handleTap(x, y) {
@@ -881,6 +894,11 @@ document.addEventListener("DOMContentLoaded", () => {
             const t = e.touches[0];
             handleTap(t.clientX - rect.left, t.clientY - rect.top);
         }, { passive: true });
+        tapCanvas.addEventListener('touchmove', (e) => {
+            if (tapRunning && ('ontouchstart' in window || navigator.maxTouchPoints > 0)) {
+                e.preventDefault();
+            }
+        }, { passive: false });
 
         if (tapStart) tapStart.addEventListener('click', () => startTap());
         if (tapReset) tapReset.addEventListener('click', () => resetTap());
